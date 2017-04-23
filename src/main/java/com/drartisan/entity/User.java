@@ -1,11 +1,16 @@
 package com.drartisan.entity;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import java.util.Date;
 
+@Entity
 public class User {
+
     private Integer id;
 
-    private String username;
+    private String userName;
 
     private String password;
 
@@ -19,6 +24,8 @@ public class User {
 
     private String state;
 
+    @GeneratedValue
+    @Id
     public Integer getId() {
         return id;
     }
@@ -27,12 +34,12 @@ public class User {
         this.id = id;
     }
 
-    public String getUsername() {
-        return username;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setUsername(String username) {
-        this.username = username == null ? null : username.trim();
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public String getPassword() {
@@ -40,7 +47,7 @@ public class User {
     }
 
     public void setPassword(String password) {
-        this.password = password == null ? null : password.trim();
+        this.password = password;
     }
 
     public Integer getAge() {
@@ -56,7 +63,7 @@ public class User {
     }
 
     public void setHobby(String hobby) {
-        this.hobby = hobby == null ? null : hobby.trim();
+        this.hobby = hobby;
     }
 
     public Date getBirthday() {
@@ -80,27 +87,6 @@ public class User {
     }
 
     public void setState(String state) {
-        this.state = state == null ? null : state.trim();
-    }
-
-
-    public User() {
-    }
-
-    public User(Integer id, String username, String password) {
-        this.username = username;
-        this.id = id;
-        this.password = password;
-    }
-
-    public User(Integer id, String username, String password, Integer age, String hobby, Date birthday, Date regTime, String state) {
-        this.id = id;
-        this.username = username;
-        this.password = password;
-        this.age = age;
-        this.hobby = hobby;
-        this.birthday = birthday;
-        this.regTime = regTime;
         this.state = state;
     }
 }

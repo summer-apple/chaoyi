@@ -1,6 +1,10 @@
 package com.drartisan.entity;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
+@Entity
 public class Article {
     private Integer id;
 
@@ -12,6 +16,8 @@ public class Article {
 
     private String content;
 
+
+    @Id
     public Integer getId() {
         return id;
     }
