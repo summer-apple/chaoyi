@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * Created by summer on 2017/4/17.
  */
-public interface UserRepository extends Repository<User,Integer> {
+public interface IUserRepository extends Repository<User,Integer> {
 
     User findById(int id);
     User findByUserName(String username);

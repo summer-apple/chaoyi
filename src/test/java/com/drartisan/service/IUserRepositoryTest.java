@@ -4,7 +4,7 @@ package com.drartisan.service;
  * Created by summer on 2017/4/17.
  */
 import com.drartisan.entity.User;
-import com.drartisan.repository.UserRepository;
+import com.drartisan.repository.IUserRepository;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -13,15 +13,15 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.util.List;
 
-public class UserRepositoryTest {
+public class IUserRepositoryTest {
 
     private ApplicationContext ctx = null;
-    private UserRepository us = null;
+    private IUserRepository us = null;
 
     @Before
     public void setup() {
         ctx = new ClassPathXmlApplicationContext("spring.xml");
-        us = (UserRepository)ctx.getBean("userRepository");
+        us = (IUserRepository)ctx.getBean("IUserRepository");
         System.out.println("setup");
     }
 
