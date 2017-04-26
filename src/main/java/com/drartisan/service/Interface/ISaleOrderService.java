@@ -29,6 +29,12 @@ public interface ISaleOrderService {
     // 多条件查询
     List<SaleOrder> getOrderByConditions(HashMap<String,Object> conditions);
 
+    // 支付订单
 
+    // 支付成功
+
+    // 支付失败
+
+    // 预支付订单生成
 
 }

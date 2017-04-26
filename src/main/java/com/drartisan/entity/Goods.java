@@ -13,9 +13,7 @@ public class Goods {
     private int goodsId;
     private String goodsNo;
     private int categoryId;
-    private String img_url;
-    private String backup1;
-    private String backup2;
+    private String imgUrl;
 
     public int getGoodsId() {
         return goodsId;
@@ -25,7 +23,7 @@ public class Goods {
         this.goodsId = goodsId;
     }
 
-    public String getGodosNo() {
+    public String getGoodsNo() {
         return goodsNo;
     }
 
@@ -41,29 +39,11 @@ public class Goods {
         this.categoryId = categoryId;
     }
 
-    public String getImg_url() {
-        return img_url;
+    public String getImgUrl() {
+        return imgUrl;
     }
 
-    public void setImg_url(String img_url) {
-        this.img_url = img_url;
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
     }
-
-    public String getBackup1() {
-        return backup1;
-    }
-
-    public void setBackup1(String backup1) {
-        this.backup1 = backup1;
-    }
-
-    public String getBackup2() {
-        return backup2;
-    }
-
-    public void setBackup2(String backup2) {
-        this.backup2 = backup2;
-    }
-
-
 }

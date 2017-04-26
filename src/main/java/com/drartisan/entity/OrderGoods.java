@@ -14,8 +14,6 @@ public class OrderGoods {
     private int subGoodsId;
     private int quantity;
     private double price;
-    private String backup1;
-    private String backup2;
 
     @Id
     public int getOrderId() {
@@ -66,19 +64,4 @@ public class OrderGoods {
         this.price = price;
     }
 
-    public String getBackup1() {
-        return backup1;
-    }
-
-    public void setBackup1(String backup1) {
-        this.backup1 = backup1;
-    }
-
-    public String getBackup2() {
-        return backup2;
-    }
-
-    public void setBackup2(String backup2) {
-        this.backup2 = backup2;
-    }
 }

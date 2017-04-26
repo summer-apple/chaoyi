@@ -18,8 +18,6 @@ public class Store {
     private String username;
     private String password;
     private String state;
-    private String backup1;
-    private String backup2;
 
 
     @GeneratedValue
@@ -96,19 +94,4 @@ public class Store {
         this.state = state;
     }
 
-    public String getBackup1() {
-        return backup1;
-    }
-
-    public void setBackup1(String backup1) {
-        this.backup1 = backup1;
-    }
-
-    public String getBackup2() {
-        return backup2;
-    }
-
-    public void setBackup2(String backup2) {
-        this.backup2 = backup2;
-    }
 }
