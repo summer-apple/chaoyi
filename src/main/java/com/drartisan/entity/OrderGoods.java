@@ -8,6 +8,7 @@ import javax.persistence.Id;
  */
 @Entity
 public class OrderGoods {
+    @Id
     private int orderId;
     private String orderType;
     private int goodsId;
@@ -15,7 +16,7 @@ public class OrderGoods {
     private int quantity;
     private double price;
 
-    @Id
+
     public int getOrderId() {
         return orderId;
     }

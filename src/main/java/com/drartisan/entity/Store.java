@@ -9,6 +9,8 @@ import javax.persistence.Id;
  */
 @Entity
 public class Store {
+    @GeneratedValue
+    @Id
     private int storeId;
     private int mainStore;
     private String storeName;
@@ -20,8 +22,7 @@ public class Store {
     private String state;
 
 
-    @GeneratedValue
-    @Id
+
     public int getStoreId() {
         return storeId;
     }

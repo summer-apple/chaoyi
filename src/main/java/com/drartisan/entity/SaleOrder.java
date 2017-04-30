@@ -1,6 +1,8 @@
 package com.drartisan.entity;
 
 import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Transient;
 import java.util.List;
 
 /**
@@ -9,6 +11,7 @@ import java.util.List;
 @Entity
 public class SaleOrder {
 
+    @Id
     private String orderId;
     private int branchStoreId;
     private int mainStoreId;
@@ -24,7 +27,9 @@ public class SaleOrder {
     private String transOrder;
     private String transContent;
     private String state;
+    @Transient
     private List<OrderGoods> orderGoodses;
+
 
     public String getOrderId() {
         return orderId;

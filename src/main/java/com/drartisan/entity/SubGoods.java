@@ -1,6 +1,7 @@
 package com.drartisan.entity;
 
 import javax.persistence.Entity;
+import javax.persistence.Id;
 
 /**
  * Created by summer on 2017/4/25.
@@ -8,12 +9,14 @@ import javax.persistence.Entity;
 @Entity
 public class SubGoods {
 
+    @Id
     private int subGoodsId;
     private int goodsId;
     private String goodsNo;
     private String model;
     private double price;
     private String imgUrl;
+
 
     public int getSubGoodsId() {
         return subGoodsId;

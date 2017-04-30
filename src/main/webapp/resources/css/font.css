@@ -1,0 +1,7 @@
+@font-face
+{
+font-family: myFirstFont;
+src: url('fonts/msyh/msyh.ttf'),
+	url('fonts/msyh/msyh.ttc'),
+     url('fonts/msyh/msyh.eot');
+}

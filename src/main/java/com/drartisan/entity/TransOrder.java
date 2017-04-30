@@ -10,7 +10,7 @@ import java.util.List;
  */
 @Entity
 public class TransOrder {
-
+    @Id
     private String orderId;
     private int branchStoreId;
     private int mainStoreId;
@@ -25,9 +25,10 @@ public class TransOrder {
     private String transOrder;
     private String transContent;
     private String state;
+    @Transient
     private List<OrderGoods> orderGoodses;
 
-    @Id
+
     public String getOrderId() {
         return orderId;
     }
@@ -140,12 +141,33 @@ public class TransOrder {
         this.state = state;
     }
 
-    @Transient
+
     public List<OrderGoods> getOrderGoodses() {
         return orderGoodses;
     }
 
     public void setOrderGoodses(List<OrderGoods> orderGoodses) {
+        this.orderGoodses = orderGoodses;
+    }
+
+    public TransOrder() {
+    }
+
+    public TransOrder(String orderId, int branchStoreId, int mainStoreId, String addressName, String addressPhone, String addressDetail, double totalPrice, String createTime, String sendTime, String reciveTime, String transCompany, String transOrder, String transContent, String state, List<OrderGoods> orderGoodses) {
+        this.orderId = orderId;
+        this.branchStoreId = branchStoreId;
+        this.mainStoreId = mainStoreId;
+        this.addressName = addressName;
+        this.addressPhone = addressPhone;
+        this.addressDetail = addressDetail;
+        this.totalPrice = totalPrice;
+        this.createTime = createTime;
+        this.sendTime = sendTime;
+        this.reciveTime = reciveTime;
+        this.transCompany = transCompany;
+        this.transOrder = transOrder;
+        this.transContent = transContent;
+        this.state = state;
         this.orderGoodses = orderGoodses;
     }
 }

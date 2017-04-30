@@ -5,6 +5,8 @@ import com.drartisan.entity.Store;
 import com.drartisan.repository.IStoreRepository;
 import com.drartisan.service.Interface.IStoreService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -24,8 +26,8 @@ public class StoreService implements IStoreService {
     }
 
     @Override
-    public List<Store> findByMainStore(int mainStore) {
-        return storeRepository.findByMainStore(mainStore);
+    public Page<Store> findByMainStore(int mainStore,int page,int size) {
+        return storeRepository.findByMainStore(mainStore,new PageRequest(page-1,size));
     }
 
     @Override
@@ -36,10 +38,16 @@ public class StoreService implements IStoreService {
     @Override
     public Store login(String username, String password) {
         List<Store> stores = storeRepository.findByUsernameAndPassword(username,password);
-        if(stores.size()!=1){
+        if(stores.size() < 1){
             return null;
         }else {
             return stores.get(0);
         }
+    }
+
+    @Override
+    public boolean isUsernameAvailable(String username) {
+        int count =  storeRepository.findByUsernameCount(username);
+        return count == 0;
     }
 }

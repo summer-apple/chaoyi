@@ -2,6 +2,7 @@ package com.drartisan.service.Interface;
 
 import com.drartisan.entity.SaleOrder;
 import com.drartisan.entity.Store;
+import org.springframework.data.domain.Page;
 
 import java.util.List;
 
@@ -19,9 +20,12 @@ public interface IStoreService {
 
 
     //查询分店
-    List<Store> findByMainStore(int mainStore);
+    Page<Store> findByMainStore(int mainStore, int page,int size);
 
 
     // 根据ID查询店铺信息
     Store findByStoreId(int storeId);
+
+    // 查询用户名是否可用
+    boolean isUsernameAvailable(String username);
 }

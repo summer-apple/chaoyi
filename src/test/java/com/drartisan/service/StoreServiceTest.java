@@ -10,8 +10,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-
-import java.util.List;
+import org.springframework.data.domain.Page;
 
 public class StoreServiceTest {
 
@@ -55,7 +54,7 @@ public class StoreServiceTest {
     @Test
     public void testFindByMainStore() {
 
-        List<Store> stores = storeService.findByMainStore(0);
+        Page<Store> stores = storeService.findByMainStore(0,0,10);
         for(Store store :stores) {
             System.out.println("store id:" + store.getStoreId()
                     + " , store name:" + store.getStoreName()
@@ -100,6 +99,12 @@ public class StoreServiceTest {
                 + " , store name:" + store.getStoreName()
                 + " ,ownner:" + store.getOwner()
                 + " ,address: " + store.getAddress());
+    }
+
+    @Test
+    public void testFindCountByUsername(){
+        int count = storeRepository.findByUsernameCount("xiadong");
+        System.out.println(count);
     }
 
 
