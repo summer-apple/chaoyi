@@ -45,4 +45,12 @@ public class ReturnMessage {
         this.retMsg = retMsg;
         this.retContent = retContent;
     }
+
+    public static ReturnMessage failureMsg(){
+        return new ReturnMessage(1,"",null);
+    }
+
+    public static ReturnMessage successMsg(){
+        return new ReturnMessage(1,"",null);
+    }
 }

@@ -22,7 +22,7 @@
 	
 
 		<li class="dropdown user-profile">
-			<a href="admin/logout">退出</a>
+			<a href="store/logout">退出</a>
 		</li>
 			
 

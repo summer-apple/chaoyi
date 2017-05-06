@@ -1,9 +1,9 @@
 package com.drartisan.service;
 
+import com.drartisan.entity.OrderGoods;
 import com.drartisan.entity.TransOrder;
 import com.drartisan.repository.ITransOrderRepository;
 import com.drartisan.repository.jpaUtils.Criteria;
-import com.drartisan.repository.jpaUtils.Criterion;
 import com.drartisan.repository.jpaUtils.Restrictions;
 import com.drartisan.service.Interface.ITransOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,14 +11,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
-import org.springframework.data.jpa.domain.Specification;
-import org.springframework.data.jpa.domain.Specifications;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Predicate;
-import javax.persistence.criteria.Root;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -32,16 +27,34 @@ public class TransOrderService implements ITransOrderService {
 
     @Autowired
     ITransOrderRepository iTransOrderRepository;
+    @Autowired
+    OrderGoodsService orderGoodsService;
 
+
+    /**
+     * 新增订单
+     * @param transOrder
+     * @return
+     */
     @Override
+    @Transactional
     public TransOrder createTransOrder(TransOrder transOrder) {
-        return iTransOrderRepository.save(transOrder);
+        transOrder  = iTransOrderRepository.save(transOrder);
+        List<OrderGoods> orderGoodsList = transOrder.getOrderGoodses();
+        orderGoodsList = orderGoodsService.addOrderGoods(transOrder.getOrderId(),orderGoodsList);
+
+        transOrder.setOrderGoodses(orderGoodsList);
+        return transOrder;
     }
 
+
     @Override
+    @Transactional
     public TransOrder updateTransOrder(String orderId, String state) {
         TransOrder transOrder = iTransOrderRepository.findOne(orderId);
         transOrder.setState(state);
+        // TODO 根据订单状态，修改总店和分店的库存情况
+
         return iTransOrderRepository.save(transOrder);
     }
 
@@ -87,21 +100,9 @@ public class TransOrderService implements ITransOrderService {
         return iTransOrderRepository.findByBranchStoreId(branchStoreId, pageable);
     }
 
+
     @Override
     public Page<TransOrder> getOrderByConditions(HashMap<String, Object> conditions, int page, int size) {
-
-        Specification<TransOrder> s1 = new Specification<TransOrder>() {
-            @Override
-            public Predicate toPredicate(Root<TransOrder> root, CriteriaQuery<?> criteriaQuery, CriteriaBuilder criteriaBuilder) {
-                return null;
-            }
-        };
-        Sort sort =  new Sort(new Sort.Order(Sort.Direction.DESC,"orderId"));
-        Page<TransOrder> transOrders = iTransOrderRepository.findAll(Specifications.where(s1),new PageRequest(page-1,size,sort));
-        return null;
-    }
-
-    public Page<TransOrder> getOrderByConditions2(HashMap<String, Object> conditions, int page, int size) {
 
         Criteria<TransOrder> criteria = new Criteria<TransOrder>();
         criteria.add(Restrictions.eq("mainStoreId",1,true));
@@ -111,20 +112,6 @@ public class TransOrderService implements ITransOrderService {
         return iTransOrderRepository.findAll(criteria,new PageRequest(page-1,size,sort));
 
     }
-
-
-
-
-
-//    Criteria<UserEntity> criteria = new Criteria<UserEntity>();
-//
-//criteria.add(Restrictions.like("name", cond.getName()));
-//criteria.add(Restrictions.gt("age", cond.getAge()));
-//
-//criteria.add(Restrictions.or(Restrictions.gt("salary", cond.getSalary()),
-//        Restrictions.eq("dept", cond.getDept())));
-
-
 
 
 

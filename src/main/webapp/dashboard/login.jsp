@@ -83,7 +83,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</div>
 				
 				<!-- Add class "fade-in-effect" for login form effect -->
-				<form action="../admin/login" method="post" role="form" id="login" class="login-form fade-in-effect">
+				<form action="../store/login" method="post" role="form" id="login" class="login-form fade-in-effect">
 					
 					<div class="login-header">
 						<a href="dashboard-1.html" class="logo">

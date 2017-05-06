@@ -9,6 +9,7 @@ import javax.persistence.Id;
 @Entity
 public class StockGoods {
     @Id
+    private int id;
     private int storeId;
     private String orderType;
     private int goodsId;
@@ -16,6 +17,14 @@ public class StockGoods {
     private double price;
     private int quantity;
 
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public int getStoreId() {
         return storeId;

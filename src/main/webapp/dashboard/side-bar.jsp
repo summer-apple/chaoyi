@@ -26,33 +26,23 @@
 
 		<ul id="main-menu" class="main-menu">
 		
-		<li><a href="dashboard/slide.jsp"> <i class="linecons-params"></i> <span
-					class="title">轮播管理</span>
-			</a></li>
+			<li><a href="dashboard/slide.jsp"> <i class="linecons-params"></i> <span class="title">分店管理</span></a></li>
 
-			<li><a href="#"> <i class="linecons-database"></i> <span
-					class="title">新闻管理</span>
-			</a>
+			<li>
+				<a href="#"> <i class="linecons-database"></i> <span class="title">订单管理</span></a>
 				<ul>
-					<li><a href="dashboard/news.jsp"> <span class="title">新闻列表</span>
-					</a></li>
-					<li><a href="dashboard/newstype.jsp"> <span class="title">新闻类型</span>
-					</a></li>
-				</ul></li>
+					<li><a href="dashboard/news.jsp"> <span class="title">调货订单</span></a></li>
+					<li><a href="dashboard/newstype.jsp"> <span class="title">销售订单</span></a></li>
+				</ul>
+			</li>
 
 
-			<li><a href="dashboard/cooperation.jsp"> <i class="linecons-star"></i> <span
-					class="title">合作管理</span>
-			</a></li>
+			<li><a href="dashboard/cooperation.jsp"> <i class="linecons-star"></i> <span class="title">库存管理</span></a></li>
 
 
-			<li><a href="dashboard/job.jsp"> <i class="linecons-cog"></i> <span
-					class="title">招聘管理</span>
-			</a></li>
+			<li><a href="dashboard/job.jsp"> <i class="linecons-cog"></i> <span class="title">**管理</span></a></li>
 
-			<li><a href="dashboard/about.jsp"> <i class="linecons-mail"></i> <span
-					class="title">关于管理</span>
-			</a></li>
+			<li><a href="dashboard/about.jsp"> <i class="linecons-mail"></i> <span class="title">**管理</span> </a></li>
 
 		</ul>
 

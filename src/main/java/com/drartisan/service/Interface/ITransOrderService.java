@@ -22,7 +22,7 @@ public interface ITransOrderService {
     // 根据ID获取订单
     TransOrder getOrderById(String orderId);
 
-    // 根据店铺获取订单
+    // 根据总店获取订单
     Page<TransOrder> getOrderByMainStore(int mainStoreId, int page, int size);
 
     // 根据分店获取订单

@@ -14,7 +14,7 @@ public interface IOrderGoodsService {
     List<OrderGoods> findOrderGoodsByOrderId(String orderId);
 
     // 新增订单商品
-    Boolean addOrderGoods(List<OrderGoods> orderGoodses);
+    List<OrderGoods> addOrderGoods(String orderId, List<OrderGoods> orderGoodses);
 
 
 }
