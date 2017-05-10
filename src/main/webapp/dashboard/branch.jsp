@@ -60,8 +60,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<div class="title-env">
 					<h1 class="title">分店-${store.storeName}</h1>
 					<p class="description">query edit or create  news</p>
-				</div>
-
+			</div>
 				<div class="breadcrumb-env">
 
 					<ol class="breadcrumb bc-1">
@@ -75,6 +74,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 
 <!--主体部分开始-->
+			<div id="toolbar"></div>
+			<table id="test-table"></table>
 			<div class="add-panel panel panel-default">
 						<div class="panel-heading">
 							<h3 class="panel-title">新增</h3>
@@ -147,14 +148,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								</div>
 
 
-								<div class="form-group">
-									<label class="col-sm-2 control-label" for="headimg"></label>
-
-									<div class="col-sm-10">
-										<input name="headimg" type="text" class="form-control" id="headimg" placeholder="首图必须上传" readonly>
-					
-									</div>
-								</div>
 
 								<div class="form-group">
 									<label class="col-sm-2 control-label" for="content">概&nbsp;&nbsp;&nbsp;要</label>
@@ -164,21 +157,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									
 								</div>
 
-								
 
-								<div class="form-group">
-									<label class="col-sm-2 control-label" for="content">详&nbsp;&nbsp;&nbsp;情</label>
-									<div class="col-sm-10 content-line">
-										<input id="content_upload" type="file" name="upload" style="display:none;" />
-										<div id="tip-queue-2" style="display:none;"></div>
-										<div id="uploadContainer">
-										    <input type="button" value="选择文件" id="btnBrowse"/>
-										</div>
-
-										<textarea name="content" id="content" style='height:500px;'></textarea>
-									</div>
-									
-								</div>
 								
 								
 								
@@ -340,182 +319,162 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 	<script type="text/javascript">
 	$().ready(function(){
-//获取新闻类型
- 		$.ajax({
-                url:'newstype/qry',
-                type:'post',
-                dataType:'json',
-                success:function(data){
-                	$.each(data, function(i, item) {
-                		 $("#type,#qry-type").append(
-                			'<option value="'+item.id+'">'+item.name+'</option>'
-                		 );
-                  	});
-
-                  	$("#qry-type").selectBoxIt().on('open', function(){
-						$(this).data('selectBoxSelectBoxIt').list.perfectScrollbar();
-					});
-
-					$("#type").selectBoxIt().on('open', function(){
-						$(this).data('selectBoxSelectBoxIt').list.perfectScrollbar();
-					});
-
-
-					//首次进入时刷新
-					qry(true);
-
-                }
-            });
 
 
 
+		$(function () {
 
+			//1.初始化Table
+			var oTable = new TableInit();
+			oTable.Init();
 
-//字符计数器
+			//2.初始化Button的点击事件
+			/* var oButtonInit = new ButtonInit();
+			 oButtonInit.Init(); */
 
-function textCount(input,max){
-	input.after('<div class="text-count">0/'+max+'</div>');
-
-	input.keyup(function(){
-		if (input.val().length==max || input.val().length>max) {
-			input.val(input.val().substring(0,max));
-		}
-		input.next(".text-count").html(input.val().length+'/'+max);
-	});
-}
-
-textCount($("#title"),30);
-textCount($("#brief"),150);
-
-
-
-
-//获取dom节点
-    var $uploadContainer = $('#uploadContainer');
-
-    var editor = $('#content').wangEditor({
-        //重要：传入 uploadImgComponent 参数，值为 $uploadContainer
-        'uploadImgComponent': $uploadContainer,
-        'menuConfig': [
-						    ['viewSourceCode'],
-						    ['bold', 'underline', 'italic', 'foreColor', 'backgroundColor', 'strikethrough'],
-						    ['blockquote', 'fontFamily', 'fontSize', 'setHead', 'list', 'justify'],
-						    ['createLink', 'unLink', 'insertTable'],
-						    ['insertImage', 'insertVideo', 'insertLocation','insertCode'],
-						    ['undo', 'redo', 'fullScreen']
-						]
-    });
-
-  	 //添加内容图片
-
- 	  
-  	  $('#content_upload').uploadifive({
-  			'width'           : 75,                 // The width of the button
-  			'height'          : 30,                 // The height of the button
-  	        'auto' : true,   //取消自动上传 
-  	        'uploadScript' : 'util/upload-image', //处理上传文件Action路径 
-  	        'fileObjName'  : 'file',        //文件对象
-	        'buttonText'   : ' 上传详情图片 ',   //按钮显示文字 
-	        'queueID'      : 'tip-queue-2', //drug and drop box's ID 
-	        'fileType'     : 'image/jpg,image/jpeg,image/png',   //允许上传文件类型 
-	        'fileSizeLimit'   : '20MB',                  // Maximum allowed size of files to upload
-	        'formData'     : {"folder":"news"},//The other data want to send
-	        'queueSizeLimit'  : 100,                  //The maximum number of files in drup and drop box 
-            'simUploadLimit'  : 100,                  // The maximum number of files to upload at once
-            'uploadLimit'     : 100,                  // The maximum number of files you can upload
-	        'onUploadComplete' : function(file, data) { //文件上传成功后执行 
-	        			var basePath = "<%=basePath%>";
-						var url = basePath + $.parseJSON(data);
-						editor.command(event, 'insertHTML', '<img src="' + url + '"/>');
-						$(".content-line #real-input:first").remove();
-	        	}
 		});
 
-	  	$(document).on("click","#btnBrowse",function(){
-						$(".content-line #real-input:last").click();
-					});
+		var responseHandler = function (e) {
+			console.log(e);
+			if (e.retCode == 0 && e.retContent.numberOfElements > 0) {
+				return { "rows": e.retContent.content, "total": e.retContent.totalElements };
+			}
+			else {
+				return { "rows": [], "total": 0 };
+			}
 
-
-
-//日期转换方法
-(function($) {
-    $.extend({
-        myTime: {
-            /**
-             * 当前时间戳
-             * @return <int>        unix时间戳(秒)  
-             */
-            CurTime: function(){
-                return Date.parse(new Date())/1000;
-            },
-            /**              
-             * 日期 转换为 Unix时间戳
-             * @param <string> 2014-01-01 20:20:20  日期格式              
-             * @return <int>        unix时间戳(秒)              
-             */
-            DateToUnix: function(string) {
-                var f = string.split(' ', 2);
-                var d = (f[0] ? f[0] : '').split('-', 3);
-                var t = (f[1] ? f[1] : '').split(':', 3);
-                return (new Date(
-                        parseInt(d[0], 10) || null,
-                        (parseInt(d[1], 10) || 1) - 1,
-                        parseInt(d[2], 10) || null,
-                        parseInt(t[0], 10) || null,
-                        parseInt(t[1], 10) || null,
-                        parseInt(t[2], 10) || null
-                        )).getTime() / 1000;
-            },
-            /**              
-             * 时间戳转换日期              
-             * @param <int> unixTime    待时间戳(秒)              
-             * @param <bool> isFull    返回完整时间(Y-m-d 或者 Y-m-d H:i:s)              
-             * @param <int>  timeZone   时区              
-             */
-            UnixToDate: function(unixTime, isFull, timeZone) {
-                if (typeof (timeZone) == 'number')
-                {
-                    unixTime = parseInt(unixTime) + parseInt(timeZone) * 60 * 60;
-                }
-                var time = new Date(unixTime * 1000);
-                var ymdhis = "";
-                ymdhis += time.getUTCFullYear() + "-";
-                ymdhis += (time.getUTCMonth()+1) + "-";
-                ymdhis += time.getUTCDate();
-                if (isFull === true)
-                {
-                    ymdhis += " " + time.getUTCHours() + ":";
-                    ymdhis += time.getUTCMinutes() + ":";
-                    ymdhis += time.getUTCSeconds();
-                }
-                return ymdhis;
-            }
-        }
-    });
-})(jQuery);
-
-
-
-/* alert($.myTime.UnixToDate(1442592000,true,8)); */
-
-	function transTime(object,isFull){
-		if (object!=null) {
-			return $.myTime.UnixToDate(object/1000,isFull,8);
-		}else{
-			return "--";
 		}
-	}
+
+		var imgFormatter = function (res) {
+			var html = "<img style='width: 75px;height:75px;' src='"+ res + "'>";
+			return html;
+		}
+
+		var subGoodsFormatter = function (lst) {
+			var html = "<ul></ul>"
+		}
+
+
+		var TableInit = function () {
+			var oTableInit = new Object();
+			//初始化Table
+			oTableInit.Init = function () {
+				$('#test-table').bootstrapTable({
+					url: 'goods/1/30',     //请求后台的URL（*）
+					method: 'get',           //请求方式（*）
+					toolbar: '#toolbar',        //工具按钮用哪个容器
+					striped: true,           //是否显示行间隔色
+					cache: false,            //是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
+					pagination: true,          //是否显示分页（*）
+					sortable: false,           //是否启用排序
+					sortOrder: "asc",          //排序方式
+					queryParams: oTableInit.queryParams,//传递参数（*）
+					sidePagination: "server",      //分页方式：client客户端分页，server服务端分页（*）
+					pageNumber:1,            //初始化加载第一页，默认第一页
+					//pageSize: 50,            //每页的记录行数（*）
+					pageList: [10, 25, 50, 100],    //可供选择的每页的行数（*）
+					strictSearch: false,
+					clickToSelect: true,        //是否启用点击选中行
+					//height: 460,            //行高，如果没有设置height属性，表格自动根据记录条数觉得表格高度
+					uniqueId: "goodsId",           //每一行的唯一标识，一般为主键列
+					cardView: false,          //是否显示详细视图
+					detailView: true,          //是否显示父子表
+					paginationPreText: "上一页",
+					paginationNextText: "下一页",
+					paginationFirstText: "首页",
+					paginationLastText: "尾页",
+					smartDisplay: false,
+					responseHandler: responseHandler,
+					columns: [{
+						field: 'imgUrl',
+						title: '图片URL',
+						formatter: imgFormatter
+					}, {
+						field: 'goodsId',
+						title: '商品ID',
+						visible: false
+					}, {
+						field: 'goodsNo',
+						title: '商品编号'
+					}, {
+						field: 'categoryId',
+						title: '分类ID'
+					}, {
+						field: 'subGoodses',
+						title: '商品子类'
+					},],
+					//注册加载子表的事件。注意下这里的三个参数！
+					onExpandRow: function (index, row, $detail) {
+						InitSubTable(index, row, $detail);
+					}
+				});
+			};
+
+
+			//初始化子表格(无线循环)
+			var InitSubTable = function (index, row, $detail) {
+				var parentid = row.goods_id;
+				var cur_table = $detail.html('<table></table>').find('table');
+				$(cur_table).bootstrapTable({
+					url: '/api/MenuApi/GetChildrenMenu',
+					method: 'get',
+					queryParams: { strParentID: parentid },
+					ajaxOptions: { strParentID: parentid },
+					clickToSelect: true,
+					detailView: true,//父子表
+					uniqueId: "MENU_ID",
+					pageSize: 10,
+					pageList: [10, 25],
+					columns: [{
+						checkbox: true
+					}, {
+						field: 'MENU_NAME',
+						title: '菜单名称'
+					}, {
+						field: 'MENU_URL',
+						title: '菜单URL'
+					}, {
+						field: 'PARENT_ID',
+						title: '父级菜单'
+					}, {
+						field: 'MENU_LEVEL',
+						title: '菜单级别'
+					}, ]
+				});
+			};
+
+
+			//得到查询的参数
+			oTableInit.queryParams = function (params) {
+				var temp = {  //这里的键的名字和控制器的变量名必须一直，这边改动，控制器也需要改成一样的
+					limit: params.limit,  //页面大小
+					offset: params.offset, //页码
+					sdate: $("#stratTime").val(),
+					edate: $("#endTime").val(),
+					sellerid: $("#sellerid").val(),
+					orderid: $("#orderid").val(),
+					CardNumber: $("#CardNumber").val(),
+					maxrows: params.limit,
+					pageindex:params.pageNumber,
+					portid: $("#portid").val(),
+					CardNumber: $("#CardNumber").val(),
+					tradetype:$('input:radio[name="tradetype"]:checked').val(),
+					success:$('input:radio[name="success"]:checked').val(),
+				};
+				return temp;
+			};
+			return oTableInit;
+		};
 
 
 
 
 
 
-//变更类型时刷新
-$("#qry-type").change(function(){
-	$("#pageNo").val(0);
-	qry(true);
-});
+
+
+
+
 
 
 
@@ -746,30 +705,6 @@ $("#qry-type").change(function(){
 
 
 
-//添加首图
-
-  	  $('#file_upload').uploadifive({
-  			'width'           : 75,                 // The width of the button
-  			'height'          : 30,                 // The height of the button
-  	        'auto' : true,   //取消自动上传 
-  	        'uploadScript' : 'util/upload-image', //处理上传文件Action路径 
-  	        'fileObjName'  : 'file',        //文件对象
-	        'buttonText'   : '上传首图',   //按钮显示文字 
-	        'queueID'      : 'tip-queue', //drug and drop box's ID 
-	        'fileType'     : 'image/jpg,image/jpeg,image/png',   //允许上传文件类型 
-	        'fileSizeLimit'   : '20MB',                  // Maximum allowed size of files to upload
-	        'formData'     : {"folder":"news"},//The other data want to send
-	        'queueSizeLimit'  : 100,                  //The maximum number of files in drup and drop box 
-            'simUploadLimit'  : 100,                  // The maximum number of files to upload at once
-            'uploadLimit'     : 100,                  // The maximum number of files you can upload
-	        'onUploadComplete' : function(file, data) { //文件上传成功后执行 
-	        	var url = $.parseJSON(data); 
-	        	
-	        	$(".img-show").html('<img src='+url+' style="width:100%;">');
-	        	$("#headimg").val(url);
-					}
-
-				});
 
 
 });	

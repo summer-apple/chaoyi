@@ -13,22 +13,25 @@ import javax.servlet.http.HttpSession;
 public class LoginInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object o) throws Exception {
-        //获取url地址
-        String reqUrl=request.getRequestURI().replace(request.getContextPath(), "");
-        //当url地址为登录的url的时候跳过拦截器
-        if(reqUrl.contains("/store/login")){
-            return true;
-        }else{
-            HttpSession session=request.getSession();
-            Object obj=session.getAttribute("store");
-            if(obj==null||"".equals(obj.toString())){
-                String path = request.getContextPath();
-                String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 
-                response.sendRedirect(basePath+"dashboard/login.jsp");
-                return false;
-            }
-        }
+
+
+//        //获取url地址
+//        String reqUrl=request.getRequestURI().replace(request.getContextPath(), "");
+//        //当url地址为登录的url的时候跳过拦截器
+//        if(reqUrl.contains("/store/login")){
+//            return true;
+//        }else{
+//            HttpSession session=request.getSession();
+//            Object obj=session.getAttribute("store");
+//            if(obj==null||"".equals(obj.toString())){
+//                String path = request.getContextPath();
+//                String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+//
+//                response.sendRedirect(basePath+"dashboard/login.jsp");
+//                return false;
+//            }
+//        }
         return true;
     }
 

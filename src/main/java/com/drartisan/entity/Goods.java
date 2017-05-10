@@ -15,6 +15,7 @@ public class Goods {
     private int goodsId;
     private String goodsNo;
     private int categoryId;
+    private String categoryName;
     private String imgUrl;
     @Transient
     private List<SubGoods> subGoodses;
@@ -41,6 +42,14 @@ public class Goods {
 
     public void setCategoryId(int categoryId) {
         this.categoryId = categoryId;
+    }
+
+    public String getCategoryName() {
+        return categoryName;
+    }
+
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
     }
 
     public String getImgUrl() {

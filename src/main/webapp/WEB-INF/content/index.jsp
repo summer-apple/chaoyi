@@ -13,52 +13,61 @@
     <script src="//cdn.bootcss.com/jquery.form/4.2.1/jquery.form.min.js"></script>
 </head>
 <body>
-<form id="login">
-    <input type="text" id="username" placeholder="username">
-    <input type="text" id="password" placeholder="password">
-    <button type="submit">Login</button>
-</form>
+
+    <input type="text" id="goodsNo" placeholder="goodsNo">
+    <input type="int" id="cagegoryId" placeholder="cagegoryId">
+    <button id="btn" type="submit">search</button>
+
 
 <script>
     $().ready(function () {
+        var subGoodses = [{'subGoodsId':1,'goodsId':10,'goodsNo':'55','model':'222','price':34.56,'imgUrl':'urlll'},{'subGoodsId':1,'goodsId':10,'goodsNo':'55','model':'222','price':34.56,'imgUrl':'urlll'}];
+        var goods = {'goodsNo':'55','categoryId':60,'categoryName':'aaa','goodsId':10,imgUrl:'urlllll'};
+        goods['subGoodses'] = subGoodses;
+        var param = new Object();
+        param['goods'] = goods;
+        param['subGoodses'] = subGoodses;
+        console.log(JSON.stringify(goods));
+        $.ajax({
+            url:'goods/obj',
+            data: JSON.stringify(goods),
+            type:'post',
+            contentType: 'application/json',
+            dataType:'json',
+            success:function(data){
+                console.log(data);
+            }
+        });
+
 //        $.ajax({
-//            url:'user/login',
-//            type:'POST',
-//            data:{"username":"xiadong","password":"xiadong"},
-//            contentType:"application/json",  //发送至服务器的类型
-//            dataType : "json",
-//            success:function (data) {
-//                alert(data);
+//            url:'goods/obj',
+//            data: {'goodsNo':'55','categoryId':60,'categoryName':'aaa','goodsId':10,imgUrl:'urlllll'},
+//            type:'post',
+//            dataType:'json',
+//            success:function(data){
+//                console.log(data);
 //            }
 //        });
 
-        $('#login').validate({
-            rules:{
-                username:{
-                    required:true
-                },
-                passowrd:{
-                    required:true
+
+        $('#btn').click(function (data) {
+
+            var goodsNo = $('#goodsNo').val();
+            var categoryId = $('#cagegoryId').val();
+            var kvs = new Object({'goodsNo':goodsNo,'categoryId':categoryId});
+            var param = new Object({'kvs':kvs,'page':1,'size':10});
+            console.log(JSON.stringify(param));
+
+            $.ajax({
+                url:'goods/kvs',
+                data: {'goodsNo':'55','categoryId':'60','page':1,'size':10},
+                type:'post',
+                dataType:'json',
+                success:function(data){
+                    console.log(data);
                 }
-            },
-            messages:{
-                username:{
-                    required:'啊啊啊啊啊啊啊'
-                },
-                passowrd:{
-                    required:'aaaaaaaaaaaa'
-                }
-            },
-            submitHandler:function (form) {
-                $("#login").ajaxSubmit({
-                    url:'user/login',
-                    type:'post',
-                    dataType:'json',
-                    success:function(data){
-                        $('body').append(data);
-                    }
-                });
-            }
+            })
+
         });
 
 

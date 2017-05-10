@@ -51,6 +51,6 @@ public class ReturnMessage {
     }
 
     public static ReturnMessage successMsg(){
-        return new ReturnMessage(1,"",null);
+        return new ReturnMessage(0,"请求成功",null);
     }
 }
