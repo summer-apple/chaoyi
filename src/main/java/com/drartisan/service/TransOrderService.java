@@ -6,6 +6,7 @@ import com.drartisan.repository.ITransOrderRepository;
 import com.drartisan.repository.jpaUtils.Criteria;
 import com.drartisan.repository.jpaUtils.Restrictions;
 import com.drartisan.service.Interface.ITransOrderService;
+import com.drartisan.util.CommonUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -39,8 +40,27 @@ public class TransOrderService implements ITransOrderService {
     @Override
     @Transactional
     public TransOrder createTransOrder(TransOrder transOrder) {
-        transOrder  = iTransOrderRepository.save(transOrder);
+        String createTime = CommonUtil.getCurrentDatetimeStr();
+        String randomStr = CommonUtil.getRandomString(10);
+        transOrder.setCreateTime(createTime);
+        transOrder.setOrderId("T"+createTime+randomStr);
+        transOrder.setState("0");
+
+
+
         List<OrderGoods> orderGoodsList = transOrder.getOrderGoodses();
+
+        //计算总价
+        double totalPrice = 0;
+        for(int i=0; i<orderGoodsList.size();i++) {
+            OrderGoods orderGoods = orderGoodsList.get(i);
+            totalPrice += orderGoods.getPrice() * orderGoods.getQuantity();
+        }
+        transOrder.setTotalPrice(totalPrice);
+
+
+        transOrder  = iTransOrderRepository.save(transOrder);
+
         orderGoodsList = orderGoodsService.addOrderGoods(transOrder.getOrderId(),orderGoodsList);
 
         transOrder.setOrderGoodses(orderGoodsList);

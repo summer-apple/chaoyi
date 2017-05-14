@@ -36,8 +36,13 @@ public class StoreAction {
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public void login(HttpServletRequest request, HttpServletResponse response,String username, String password) throws IOException,ServletException{
         Store store = storeService.login(username,password);
-        request.getSession().setAttribute("store",store);
-        String url = store.getMainStore() == 0 ? "../dashboard/main.jsp":"../dashboard/branch.jsp";
+        String url = "../dashboard/login.jsp";
+        if(null != store){
+            request.getSession().setAttribute("store",store);
+            url = store.getMainStore() == 0 ? "../dashboard/main.jsp":"../dashboard/branch.jsp";
+        }else{
+            request.getSession().setAttribute("flag",true);
+        }
         request.getRequestDispatcher(url).forward(request,response);
     }
 

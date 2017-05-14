@@ -27,8 +27,6 @@ public class TransOrder {
     private String transContent;
     private String state;
     @Transient
-    private List<HashMap<String,Integer>> subGoodsIdQuantitys;
-    @Transient
     private List<OrderGoods> orderGoodses;
 
 
@@ -144,13 +142,6 @@ public class TransOrder {
         this.state = state;
     }
 
-    public List<HashMap<String, Integer>> getSubGoodsIdQuantitys() {
-        return subGoodsIdQuantitys;
-    }
-
-    public void setSubGoodsIdQuantitys(List<HashMap<String, Integer>> subGoodsIdQuantitys) {
-        this.subGoodsIdQuantitys = subGoodsIdQuantitys;
-    }
 
     public List<OrderGoods> getOrderGoodses() {
         return orderGoodses;
@@ -163,7 +154,7 @@ public class TransOrder {
     public TransOrder() {
     }
 
-    public TransOrder(String orderId, int branchStoreId, int mainStoreId, String addressName, String addressPhone, String addressDetail, double totalPrice, String createTime, String sendTime, String reciveTime, String transCompany, String transOrder, String transContent, String state, List<HashMap<String, Integer>> subGoodsIdQuantitys, List<OrderGoods> orderGoodses) {
+    public TransOrder(String orderId, int branchStoreId, int mainStoreId, String addressName, String addressPhone, String addressDetail, double totalPrice, String createTime, String sendTime, String reciveTime, String transCompany, String transOrder, String transContent, String state, List<OrderGoods> orderGoodses) {
         this.orderId = orderId;
         this.branchStoreId = branchStoreId;
         this.mainStoreId = mainStoreId;
@@ -178,7 +169,6 @@ public class TransOrder {
         this.transOrder = transOrder;
         this.transContent = transContent;
         this.state = state;
-        this.subGoodsIdQuantitys = subGoodsIdQuantitys;
         this.orderGoodses = orderGoodses;
     }
 }

@@ -93,7 +93,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						
 						<p>Dear user, log in to access the admin area!</p>
 						
-						<c:if test="${empty admin && flag==true}">
+						<c:if test="${empty store && flag==true}">
 							<p>
 								<span class="text-danger">用户名或密码错误！</span>
 							</p>

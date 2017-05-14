@@ -17,17 +17,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 <%@ include file="css.jsp" %>
 <style type="text/css">
-#uploadifive-file_upload, #uploadifive-content_upload {
-	background-color: #000;
-	color: #FFF;
-}
-.content-line #uploadifive-file_upload,.content-line #uploadifive-content_upload {
-	display: none !important;
-}
 
-/* .wangEditor-modal-container .wangEditor-modal{
-	margin-top:-3637px !important;
-} */
+
+
 </style>
 
 
@@ -74,11 +66,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 
 <!--主体部分开始-->
-			<div id="toolbar"></div>
-			<table id="test-table"></table>
-			<div class="add-panel panel panel-default">
+
+
+
+
+
+
+
+
+			<div class="add-panel panel panel-default" style="display: block;">
 						<div class="panel-heading">
-							<h3 class="panel-title">新增</h3>
+							<h3 class="panel-title">进货单</h3>
 							<div class="panel-options">
 								<a href="#" data-toggle="panel">
 									<span class="collapse-icon">–</span>
@@ -90,83 +88,118 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							</div>
 						</div>
 						<div class="panel-body">
-							
+							<div class="row">
+								<label class="col-sm-2 control-label" style="text-align: right;" for="order-goods-table">商&nbsp;&nbsp;&nbsp;品</label>
+								<div class="col-sm-10">
+									<table id="order-goods-table" class="table table-bordered table-striped table-condensed table-hover">
+										<thead><tr>
+											<th>图片</th>
+											<th>子商品ID</th>
+											<th>商品ID</th>
+											<th>商品编号</th>
+											<th>型号</th>
+											<th>价格</th>
+											<th>数量</th>
+											<th>操作</th>
+										</tr></thead>
+
+										<tbody>
+											<tr>
+
+												<td class="imgUrl"><img style="width: 75px;height:75px;" src="http://www.hzcycs.com/upload/201704/27/201704271400102998.JPG"></td>
+												<td class="subGoodsId">231323</td>
+												<td class="goodsId">111</td>
+												<td class="goodsNo">bh59</td>
+												<td class="model">分类10</td>
+												<td class="price">100.00</td>
+												<td class="quantity">3</td>
+												<td>
+													<a href="javascript:void(0);">删除</a>
+												</td>
+											</tr>
+											<tr>
+
+												<td class="imgUrl"><img style="width: 75px;height:75px;" src="http://www.hzcycs.com/upload/201704/27/201704271400102998.JPG"></td>
+												<td class="subGoodsId">231323</td>
+												<td class="goodsId">111</td>
+												<td class="goodsNo">bh59</td>
+												<td class="model">分类10</td>
+												<td class="price">100.00</td>
+												<td class="quantity">3</td>
+												<td>
+													<a href="javascript:void(0);">删除</a>
+												</td>
+											</tr>
+											<tr>
+
+												<td class="imgUrl"><img style="width: 75px;height:75px;" src="http://www.hzcycs.com/upload/201704/27/201704271400102998.JPG"></td>
+												<td class="subGoodsId">231323</td>
+												<td class="goodsId">111</td>
+												<td class="goodsNo">bh59</td>
+												<td class="model">分类10</td>
+												<td class="price">100.00</td>
+												<td class="quantity">3</td>
+												<td>
+													<a href="javascript:void(0);">删除</a>
+												</td>
+											</tr>
+											<tr>
+
+												<td class="imgUrl"><img style="width: 75px;height:75px;" src="http://www.hzcycs.com/upload/201704/27/201704271400102998.JPG"></td>
+												<td class="subGoodsId">231323</td>
+												<td class="goodsId">111</td>
+												<td class="goodsNo">bh59</td>
+												<td class="model">分类10</td>
+												<td class="price">100.00</td>
+												<td class="quantity">3</td>
+												<td>
+													<a href="javascript:void(0);">删除</a>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
 							<form id="add-form" role="form" class="form-horizontal" action="" method="post">
-								
-								<input name="id" type="hidden" id="id">
+
 
 								<div class="form-group">
-									<label class="col-sm-2 control-label" for="title">标&nbsp;&nbsp;&nbsp;题</label>
+									<label class="col-sm-2 control-label" for="addressName">收件人</label>
 									
 									<div class="col-sm-10">
-										<input name="title" type="text" class="form-control" id="title" placeholder="标题,30字以内">
-										
-									</div>
-								</div>
-								
-
-								<div class="form-group">
-									<label class="col-sm-2 control-label" for="link">类&nbsp;&nbsp;&nbsp;型</label>
-									
-									<!-- <script type="text/javascript">
-										jQuery(document).ready(function($)
-										{
-											$("#type").selectBoxIt().on('open', function()
-											{
-												// Adding Custom Scrollbar
-												$(this).data('selectBoxSelectBoxIt').list.perfectScrollbar();
-											});
-										});
-									</script> -->
-									<div class="col-sm-10">
-										<select name="type" class="form-control" id="type" style="display: none;">
-										</select>
-									</div>
-								</div>
-								
-								
-								<div class="form-group">
-									<label class="col-sm-2 control-label">权&nbsp;&nbsp;&nbsp;重</label>
-									
-									<div class="col-sm-10">
-										<input name="weight" type="number" min="0" max="10" class="form-control" id="weight" placeholder="0-10数字，0为置顶标志，越小越靠前，首页展示前十个(非必填，默认值11，按时间倒序)">
-									</div>
-								</div>
-								
-
-								<div class="form-group">
-									<label class="col-sm-2 control-label" for="headimg">首&nbsp;&nbsp;&nbsp;图</label>
-									
-									<div class="col-sm-2">
-										<input id="file_upload" type="file" name="upload" style="display:none;" />
-										<div id="tip-queue" style="display:none;"></div>
-										<div>建议150*100像素</div>
-									</div>
-									<div class="col-sm-4 img-show">
+										<input name="addressName" type="text" class="form-control" id="addressName" placeholder="收件人">
 										
 									</div>
 								</div>
 
-
-
 								<div class="form-group">
-									<label class="col-sm-2 control-label" for="content">概&nbsp;&nbsp;&nbsp;要</label>
+									<label class="col-sm-2 control-label" for="addressPhone">手&nbsp;&nbsp;&nbsp;机</label>
+
 									<div class="col-sm-10">
-										<textarea name="brief" id="brief" class="form-control" placeholder="内容概要，150字以内(非必填，默认截取详情前150字)"></textarea>
+										<input name="addressPhone" type="text" class="form-control" id="addressPhone" placeholder="11位手机号码">
+
 									</div>
+								</div>
+								
+
+								
+								
+								<div class="form-group">
+									<label class="col-sm-2 control-label" for="addressDetail">地&nbsp;&nbsp;&nbsp;址</label>
 									
+									<div class="col-sm-10">
+										<input name="addressDetail" type="text" maxlength="50" class="form-control" id="addressDetail" placeholder="详细地址：X省X市X县X街道X号">
+									</div>
 								</div>
 
-
-								
 								
 								
 								<div class="form-group">
-									<div class="col-sm-6">
-									</div>
 									<div class="col-sm-2">
-										<button id="add-btn" type="submit" class="btn btn-primary btn-single btn-sm">保 存</button>
-										<button id="update-btn" type="submit" class="btn btn-primary btn-single btn-sm">更 新</button>
+									</div>
+									<div class="col-sm-10" style="text-align: center;">
+										<a id="submit-order" href="javascript:void(0);" class="btn btn-primary btn-single btn-sm">提 交</a>
+										<a id="close-order" href="javascript:void(0);" class="btn btn-primary btn-single btn-sm">取 消</a>
 									</div>
 								</div>
 								
@@ -175,85 +208,53 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							
 						</div>
 					</div>
-<!--新增新闻表单结束-->
+<!--购物车结束-->
 
 			<div class="panel panel-default">
 				
 				<div class="row">
-				<div class="col-sm-4">
-						
-	
+
+					<div class="col-sm-8">
 						<form class="form-inline" id="qry-form" action="" method="post">
 							<div class="row">
-							<div class="form-group col-sm-12">
-									
-									<!-- <script type="text/javascript">
+								<div class="form-group col-sm-4" style="min-width: 150px;">
+									<script type="text/javascript">
 										jQuery(document).ready(function($)
 										{
-											$("#qry-type").selectBoxIt().on('open', function()
+											$("#qry-categoryId").selectBoxIt().on('open', function()
 											{
 												// Adding Custom Scrollbar
 												$(this).data('selectBoxSelectBoxIt').list.perfectScrollbar();
 											});
 										});
-									</script> -->
+									</script>
 									<div class="col-sm-12">
-										<select name="type" class="form-control" id="qry-type" style="display: none;">
+										<select name="categoryId" class="form-control" id="qry-categoryId" style="display: none;">
+											<option value="105" selected>商品类目</option>
+											<option value="0" >商品类目2</option>
 										</select>
 									</div>
 								</div>
-							<div class="form-group"> 
-								<input id="pageNo" name="pageNo" class="form-control" type="hidden" value="0" placeholder="页码">
-							</div>
-							<div class="form-group"> 
-								<input id="pageSize" name="pageSize" class="form-control" type="hidden" value="10" placeholder="每页新闻数">
-							</div>
+								<div class="form-group">
+									<input id="qry-goodsNo" name="goodsNo" class="form-control" type="text" placeholder="商品编号" value="bh">
+								</div>
+								<div class="form-group">
+									<button id="qry-btn" type="button" class="btn btn-primary btn-single btn-sm">查 询</button>
+								</div>
 
-							<div class="form-group"> 
-								<input id="amount" name="amount" class="form-control" type="hidden" placeholder="总页数">
-							</div>
 							</div>
 						</form>
- 
+
 					</div>
-					<div class="col-sm-8">
-						<a href="javascript:void(0);" class="open-panel btn btn-primary btn-single btn-sm" style="float:left; margin-right:10px;">新建新闻</a>
-						<h5>主页展示权重排名前十项的新闻类型,权重0为置顶标志</h5>
-					</div>
+
 					
 					
 				
 				</div>
 
-				
-				<div class="row">
-					<div class="col-sm-12">
-						<table id="qry-table" class="table table-bordered table-striped table-condensed table-hover">
-										<thead>
-											<tr>
-												<th>ID</th>
-												<th>类型</th>
-												<th>标题</th>
-												<th>权重</th>
-												<th>简介</th>
-												<th>首图</th>
-												<th>时间</th>
-												<th>操作</th>
-											</tr>
-										</thead>
-										
-										<tbody>
-											
-										</tbody>
-						</table>
-					</div>
-				</div>
+				<table id="test-table"></table>
 
-				<div class="row">
-					<div class="col-sm-12">
-						<div class="pagination"></div>
-					</div>				
-				</div>
+
 				
 
 			</div>
@@ -320,6 +321,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<script type="text/javascript">
 	$().ready(function(){
 
+		$.ajax({
+			url: 'goods/category',
+			method:'get',
+			dataType: 'json',
+			success:function(data){
+				$.each(data, function (i,item) {
+					$("#qry-categoryId").append("<opthon value='"+item.categoryId+"'>"+item.categoryName+"</option>")
+				});
+			}
+		});
+
+
 
 
 		$(function () {
@@ -335,7 +348,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		});
 
 		var responseHandler = function (e) {
-			console.log(e);
 			if (e.retCode == 0 && e.retContent.numberOfElements > 0) {
 				return { "rows": e.retContent.content, "total": e.retContent.totalElements };
 			}
@@ -350,8 +362,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			return html;
 		}
 
-		var subGoodsFormatter = function (lst) {
-			var html = "<ul></ul>"
+		var numFormatter = function (subGoodsId) {
+			return "<input type='number' value='1' min='1' id='"+ subGoodsId +"'>"
+		}
+
+		var btnFormatter = function (lst) {
+			return "<a href='javascript:void(0);'>加入订货单</a>"
 		}
 
 
@@ -360,9 +376,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			//初始化Table
 			oTableInit.Init = function () {
 				$('#test-table').bootstrapTable({
-					url: 'goods/1/30',     //请求后台的URL（*）
-					method: 'get',           //请求方式（*）
-					toolbar: '#toolbar',        //工具按钮用哪个容器
+					url: 'goods/filter',     //请求后台的URL（*）
+					method: 'post',           //请求方式（*）
+					contentType: 'application/x-www-form-urlencoded',
+					toolbar: $('#toolbar'),        //工具按钮用哪个容器
 					striped: true,           //是否显示行间隔色
 					cache: false,            //是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
 					pagination: true,          //是否显示分页（*）
@@ -387,7 +404,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					responseHandler: responseHandler,
 					columns: [{
 						field: 'imgUrl',
-						title: '图片URL',
+						title: '图片',
 						formatter: imgFormatter
 					}, {
 						field: 'goodsId',
@@ -397,12 +414,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						field: 'goodsNo',
 						title: '商品编号'
 					}, {
-						field: 'categoryId',
-						title: '分类ID'
+						field: 'categoryName',
+						title: '分类'
+
 					}, {
-						field: 'subGoodses',
-						title: '商品子类'
-					},],
+						field: 'categoryId',
+						title: '分类ID',
+						visible: false
+
+					}],
 					//注册加载子表的事件。注意下这里的三个参数！
 					onExpandRow: function (index, row, $detail) {
 						InitSubTable(index, row, $detail);
@@ -411,35 +431,42 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			};
 
 
-			//初始化子表格(无线循环)
+			//初始化子表格
 			var InitSubTable = function (index, row, $detail) {
-				var parentid = row.goods_id;
+				var parentid = row.goodsId;
 				var cur_table = $detail.html('<table></table>').find('table');
 				$(cur_table).bootstrapTable({
-					url: '/api/MenuApi/GetChildrenMenu',
-					method: 'get',
-					queryParams: { strParentID: parentid },
-					ajaxOptions: { strParentID: parentid },
-					clickToSelect: true,
-					detailView: true,//父子表
-					uniqueId: "MENU_ID",
-					pageSize: 10,
-					pageList: [10, 25],
-					columns: [{
-						checkbox: true
+					data: row.subGoodses,
+					striped: true,           //是否显示行间隔色
+					uniqueId: "subGoodsId",
+					columns: [  {
+						field: 'imgUrl',
+						title: '图片',
+						formatter: imgFormatter
 					}, {
-						field: 'MENU_NAME',
-						title: '菜单名称'
+						field: 'subGoodsId',
+						title: '子商品ID'
 					}, {
-						field: 'MENU_URL',
-						title: '菜单URL'
+						field: 'model',
+						title: '型号'
 					}, {
-						field: 'PARENT_ID',
-						title: '父级菜单'
+						field: 'price',
+						title: '价格'
 					}, {
-						field: 'MENU_LEVEL',
-						title: '菜单级别'
-					}, ]
+						title: '数量',
+						formatter: numFormatter
+					}, {
+						title: '操作',
+						formatter: btnFormatter
+					}, {
+						field: 'goodsId',
+						title: '商品ID',
+						visible: false
+					}, {
+						field: 'goodsNo',
+						title: '商品编号',
+						visible: false
+					} ]
 				});
 			};
 
@@ -447,19 +474,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			//得到查询的参数
 			oTableInit.queryParams = function (params) {
 				var temp = {  //这里的键的名字和控制器的变量名必须一直，这边改动，控制器也需要改成一样的
-					limit: params.limit,  //页面大小
-					offset: params.offset, //页码
-					sdate: $("#stratTime").val(),
-					edate: $("#endTime").val(),
-					sellerid: $("#sellerid").val(),
-					orderid: $("#orderid").val(),
-					CardNumber: $("#CardNumber").val(),
-					maxrows: params.limit,
-					pageindex:params.pageNumber,
-					portid: $("#portid").val(),
-					CardNumber: $("#CardNumber").val(),
-					tradetype:$('input:radio[name="tradetype"]:checked').val(),
-					success:$('input:radio[name="success"]:checked').val(),
+					size: params.limit,  //页面大小
+					page: Math.ceil(params.offset / params.limit) + 1, //页码
+					goodsNo: $("#qry-goodsNo").val(),
+					categoryId: $("#qry-categoryId").val()
 				};
 				return temp;
 			};
@@ -467,6 +485,41 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		};
 
 
+
+		$('#submit-order').click(function () {
+			var transOrder = new Object();
+			transOrder.addressName = $('#addressName').val();
+			transOrder.addressPhone = $('#addressPhone').val();
+			transOrder.addressDetail = $('#addressDetail').val();
+
+			var orderGoods = new Array();
+			$('#order-goods-table tbody tr').each(function(index){
+				var goods = new Object();
+				goods.imgUrl = $(this).find($('.imgUrl img')).attr('src');
+				goods.subGoodsId = $(this).find($('.subGoodsId')).html();
+				goods.goodsId = $(this).find($('.goodsId')).html();
+				goods.goodsNo = $(this).find($('.goodsNo')).html();
+				goods.model = $(this).find($('.model')).html();
+				goods.price = $(this).find($('.price')).html();
+				goods.quantity = $(this).find($('.quantity')).html();
+				orderGoods.push(goods);
+			});
+			transOrder.orderGoodses = orderGoods;
+			console.log(JSON.stringify(transOrder));
+
+			$.ajax({
+				url:'trans-order/create',
+				data: JSON.stringify(transOrder),
+				type:'post',
+				contentType: 'application/json',
+				dataType:'json',
+				success:function(data){
+					console.log(data);
+				}
+			});
+
+
+		});
 
 
 

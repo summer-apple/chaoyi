@@ -1,6 +1,8 @@
 package com.drartisan.service;
 
+import com.drartisan.entity.Category;
 import com.drartisan.entity.Goods;
+import com.drartisan.repository.ICategoryRepository;
 import com.drartisan.repository.IGoodsRepository;
 import com.drartisan.repository.jpaUtils.Criteria;
 import com.drartisan.repository.jpaUtils.Restrictions;
@@ -26,6 +28,8 @@ public class GoodsService implements IGoodsService {
 
     @Autowired
     IGoodsRepository iGoodsRepository;
+    @Autowired
+    ICategoryRepository iCategoryRepository;
     @Autowired
     SubGoodsService subGoodsService;
 
@@ -73,12 +77,20 @@ public class GoodsService implements IGoodsService {
     public Page<Goods> findGoodsByKvs(String goodsNo,int categoryId, int page, int size) {
 
         Criteria<Goods> criteria = new Criteria<>();
-        criteria.add(Restrictions.eq("categoryId",categoryId,true));
+        if (categoryId != 0) {
+            criteria.add(Restrictions.eq("categoryId", categoryId, true));
+            criteria.add(Restrictions.and());
+        }
         criteria.add(Restrictions.like("goodsNo",goodsNo, MatchMode.ANYWHERE,true));
 
 
         Sort sort =  new Sort(new Sort.Order(Sort.Direction.DESC,"goodsId"));
         Page<Goods> goodsPage = iGoodsRepository.findAll(criteria,new PageRequest(page-1,size,sort));
         return this.getSubGoods(goodsPage);
+    }
+
+    @Override
+    public List<Category> getCategory() {
+        return iCategoryRepository.findAll();
     }
 }

@@ -120,10 +120,12 @@ public class TransOrderAction {
     }
 
 
-    @RequestMapping(method = RequestMethod.PUT)
-    public ReturnMessage createTransOrder(TransOrder transOrder,HttpServletRequest request){
+    @RequestMapping(value = "create", method = RequestMethod.POST)
+    public ReturnMessage createTransOrder(HttpServletRequest request, @RequestBody TransOrder transOrder){
+        System.out.println(transOrder.getAddressName());
         Store loginStore = (Store)request.getSession().getAttribute("store");
         transOrder.setBranchStoreId(loginStore.getStoreId());
+        transOrder.setMainStoreId(loginStore.getMainStore());
         transOrder = transOrderService.createTransOrder(transOrder);
         return ReturnMessage.successMsg().setRetMsg("保存成功").setRetContent(transOrder);
     }

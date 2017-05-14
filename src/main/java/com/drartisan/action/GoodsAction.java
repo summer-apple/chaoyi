@@ -1,5 +1,6 @@
 package com.drartisan.action;
 
+import com.drartisan.entity.Category;
 import com.drartisan.entity.Goods;
 import com.drartisan.entity.ReturnMessage;
 import com.drartisan.entity.SubGoods;
@@ -104,7 +105,10 @@ public class GoodsAction {
         return ReturnMessage.successMsg().setRetMsg("查询成功").setRetContent(null);
     }
 
-
+    @RequestMapping(value = "category", method = RequestMethod.GET)
+    public List<Category> getCategory(){
+        return goodsService.getCategory();
+    }
 
 
 
