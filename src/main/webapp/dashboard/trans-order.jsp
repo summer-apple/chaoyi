@@ -69,147 +69,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 
 
-
-
-
-
-
-			<div class="add-panel panel panel-default" style="display: block;">
-						<div class="panel-heading">
-							<h3 class="panel-title">进货单</h3>
-							<div class="panel-options">
-								<a href="#" data-toggle="panel">
-									<span class="collapse-icon">–</span>
-									<span class="expand-icon">+</span>
-								</a>
-								<a href="javascript:void(0);" class="close-panel">
-									×
-								</a>
-							</div>
-						</div>
-						<div class="panel-body">
-							<div class="row">
-								<label class="col-sm-2 control-label" style="text-align: right;" for="order-goods-table">商&nbsp;&nbsp;&nbsp;品</label>
-								<div class="col-sm-10">
-									<table id="order-goods-table" class="table table-bordered table-striped table-condensed table-hover">
-										<thead><tr>
-											<th>图片</th>
-											<th>子商品ID</th>
-											<th>商品ID</th>
-											<th>商品编号</th>
-											<th>型号</th>
-											<th>价格</th>
-											<th>数量</th>
-											<th>操作</th>
-										</tr></thead>
-
-										<tbody>
-											<tr>
-
-												<td class="imgUrl"><img style="width: 75px;height:75px;" src="http://www.hzcycs.com/upload/201704/27/201704271400102998.JPG"></td>
-												<td class="subGoodsId">231323</td>
-												<td class="goodsId">111</td>
-												<td class="goodsNo">bh59</td>
-												<td class="model">分类10</td>
-												<td class="price">100.00</td>
-												<td class="quantity">3</td>
-												<td>
-													<a href="javascript:void(0);">删除</a>
-												</td>
-											</tr>
-											<tr>
-
-												<td class="imgUrl"><img style="width: 75px;height:75px;" src="http://www.hzcycs.com/upload/201704/27/201704271400102998.JPG"></td>
-												<td class="subGoodsId">231323</td>
-												<td class="goodsId">111</td>
-												<td class="goodsNo">bh59</td>
-												<td class="model">分类10</td>
-												<td class="price">100.00</td>
-												<td class="quantity">3</td>
-												<td>
-													<a href="javascript:void(0);">删除</a>
-												</td>
-											</tr>
-											<tr>
-
-												<td class="imgUrl"><img style="width: 75px;height:75px;" src="http://www.hzcycs.com/upload/201704/27/201704271400102998.JPG"></td>
-												<td class="subGoodsId">231323</td>
-												<td class="goodsId">111</td>
-												<td class="goodsNo">bh59</td>
-												<td class="model">分类10</td>
-												<td class="price">100.00</td>
-												<td class="quantity">3</td>
-												<td>
-													<a href="javascript:void(0);">删除</a>
-												</td>
-											</tr>
-											<tr>
-
-												<td class="imgUrl"><img style="width: 75px;height:75px;" src="http://www.hzcycs.com/upload/201704/27/201704271400102998.JPG"></td>
-												<td class="subGoodsId">231323</td>
-												<td class="goodsId">111</td>
-												<td class="goodsNo">bh59</td>
-												<td class="model">分类10</td>
-												<td class="price">100.00</td>
-												<td class="quantity">3</td>
-												<td>
-													<a href="javascript:void(0);">删除</a>
-												</td>
-											</tr>
-										</tbody>
-									</table>
-								</div>
-							</div>
-							<form id="add-form" role="form" class="form-horizontal" action="" method="post">
-
-
-								<div class="form-group">
-									<label class="col-sm-2 control-label" for="addressName">收件人</label>
-									
-									<div class="col-sm-10">
-										<input name="addressName" type="text" class="form-control" id="addressName" placeholder="收件人">
-										
-									</div>
-								</div>
-
-								<div class="form-group">
-									<label class="col-sm-2 control-label" for="addressPhone">手&nbsp;&nbsp;&nbsp;机</label>
-
-									<div class="col-sm-10">
-										<input name="addressPhone" type="text" class="form-control" id="addressPhone" placeholder="11位手机号码">
-
-									</div>
-								</div>
-								
-
-								
-								
-								<div class="form-group">
-									<label class="col-sm-2 control-label" for="addressDetail">地&nbsp;&nbsp;&nbsp;址</label>
-									
-									<div class="col-sm-10">
-										<input name="addressDetail" type="text" maxlength="50" class="form-control" id="addressDetail" placeholder="详细地址：X省X市X县X街道X号">
-									</div>
-								</div>
-
-								
-								
-								<div class="form-group">
-									<div class="col-sm-2">
-									</div>
-									<div class="col-sm-10" style="text-align: center;">
-										<a id="submit-order" href="javascript:void(0);" class="btn btn-primary btn-single btn-sm">提 交</a>
-										<a id="close-order" href="javascript:void(0);" class="btn btn-primary btn-single btn-sm">取 消</a>
-									</div>
-								</div>
-								
-								
-							</form>
-							
-						</div>
-					</div>
-<!--购物车结束-->
-
 			<div class="panel panel-default">
 				
 				<div class="row">
@@ -217,27 +76,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<div class="col-sm-8">
 						<form class="form-inline" id="qry-form" action="" method="post">
 							<div class="row">
-								<div class="form-group col-sm-4" style="min-width: 150px;">
-									<script type="text/javascript">
-										jQuery(document).ready(function($)
-										{
-											$("#qry-categoryId").selectBoxIt().on('open', function()
-											{
-												// Adding Custom Scrollbar
-												$(this).data('selectBoxSelectBoxIt').list.perfectScrollbar();
-											});
-										});
-									</script>
-									<div class="col-sm-12">
-										<select name="categoryId" class="form-control" id="qry-categoryId" style="display: none;">
-											<option value="105" selected>商品类目</option>
-											<option value="0" >商品类目2</option>
-										</select>
-									</div>
+
+								<div class="form-group">
+									<input id="qry-orderId" name="orderId" class="form-control" type="text" placeholder="订单号">
+								</div>
+
+								<div class="form-group">
+
+									<input id="qry-orderTimeStart" name="orderTimeStart" type="text" class="form-control datepicker" data-format="yyyymmdd" data-start-view="3" placeholder="下单日期-起">
 								</div>
 								<div class="form-group">
-									<input id="qry-goodsNo" name="goodsNo" class="form-control" type="text" placeholder="商品编号" value="bh">
+									<input id="qry-orderTimeEnd" name="orderTimeEnd" type="text" class="form-control datepicker" data-format="yyyymmdd" data-start-view="3" placeholder="下单日期-止">
+
 								</div>
+
 								<div class="form-group">
 									<button id="qry-btn" type="button" class="btn btn-primary btn-single btn-sm">查 询</button>
 								</div>
@@ -252,7 +104,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				
 				</div>
 
-				<table id="goods-table"></table>
+				<table id="order-table"></table>
 
 
 				
@@ -304,48 +156,31 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<link rel="stylesheet" href="resources/js/select2/select2-bootstrap.css">
 
 	<%@ include file="script.jsp" %>
-	<script type="text/javascript" src="resources/js/jquery.pagination.js"></script>
-	<script src="resources/js/jquery.uploadifive.js"></script>
-	<!-- <script src="resources/js/ckeditor/ckeditor.js"></script> -->
-	<!-- <script src="resources/js/ckeditor/adapters/jquery.js"></script> -->
+
 
 	<script src="resources/js/select2/select2.min.js"></script>
 	<script src="resources/js/jquery-ui/jquery-ui.min.js"></script>
 	<script src="resources/js/selectboxit/jquery.selectBoxIt.min.js"></script>
 	<script src="resources/js/multiselect/js/jquery.multi-select.js"></script>
+	<script type="text/javascript" src="resources/js/datepicker/bootstrap-datepicker.js"></script>
 
-
-	<link rel="stylesheet" href="resources/js/wangEditor/css/wangEditor-1.3.12.css">
-	<script src="resources/js/wangEditor/js/wangEditor-1.3.12.min.js"></script>
 
 	<script type="text/javascript">
 	$().ready(function(){
 
-		$.ajax({
-			url: 'goods/category',
-			method:'get',
-			dataType: 'json',
-			success:function(data){
-				$.each(data, function (i,item) {
-					$("#qry-categoryId").append("<opthon value='"+item.categoryId+"'>"+item.categoryName+"</option>")
-				});
-			}
-		});
 
 
-
-
-		$(function () {
-
-			//1.初始化Table
-			var oTable = new TableInit();
-			oTable.Init();
-
-			//2.初始化Button的点击事件
-			/* var oButtonInit = new ButtonInit();
-			 oButtonInit.Init(); */
-
-		});
+//		$(function () {
+//
+//			//1.初始化Table
+//			var oTable = new TableInit();
+//			oTable.Init();
+//
+//			//2.初始化Button的点击事件
+//			/* var oButtonInit = new ButtonInit();
+//			 oButtonInit.Init(); */
+//
+//		});
 
 		var responseHandler = function (e) {
 			if (e.retCode == 0 && e.retContent.numberOfElements > 0) {
@@ -355,28 +190,46 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				return { "rows": [], "total": 0 };
 			}
 
-		}
+		};
 
 		var imgFormatter = function (res) {
 			var html = "<img style='width: 75px;height:75px;' src='"+ res + "'>";
 			return html;
-		}
+		};
 
-		var numFormatter = function (subGoodsId) {
-			return "<input type='number' value='1' min='1' id='"+ subGoodsId +"'>"
-		}
+		var stateFormatter = function (state) {
+//			static final String UNCHECKED = "1"; // 待审核
+//			static final String UNSHIP = "2"; // 待发货
+//			static final String SHIPED = "3"; // 已发货
+//			static final String FINISHED = "4"; // 已完成
+//			static final String REFUSED =  "5"; // 审核不通过
+//			static final String CANCELD = "6"; // 已取消
+			if(state == '1'){
+				return '待审核';
+			}else if (state == '2'){
+				return '待发货';
+			}else if (state == '3'){
+				return '已发货';
+			}else if (state == '4'){
+				return '已完成';
+			}else if (state == '5'){
+				return '审核不通过';
+			}else{
+				return '已取消';
+			}
+		};
 
 		var btnFormatter = function (lst) {
 			return "<a href='javascript:void(0);'>加入订货单</a>"
-		}
+		};
 
 
 		var TableInit = function () {
 			var oTableInit = new Object();
 			//初始化Table
 			oTableInit.Init = function () {
-				$('#goods-table').bootstrapTable({
-					url: 'goods/filter',     //请求后台的URL（*）
+				$('#order-table').bootstrapTable({
+					url: 'trans-order/branch',     //请求后台的URL（*）
 					method: 'post',           //请求方式（*）
 					contentType: 'application/x-www-form-urlencoded',
 					striped: true,           //是否显示行间隔色
@@ -392,7 +245,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					strictSearch: false,
 					clickToSelect: true,        //是否启用点击选中行
 					//height: 460,            //行高，如果没有设置height属性，表格自动根据记录条数觉得表格高度
-					uniqueId: "goodsId",           //每一行的唯一标识，一般为主键列
+					uniqueId: "orderId",           //每一行的唯一标识，一般为主键列
 					cardView: false,          //是否显示详细视图
 					detailView: true,          //是否显示父子表
 					paginationPreText: "上一页",
@@ -402,23 +255,46 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					smartDisplay: false,
 					responseHandler: responseHandler,
 					columns: [{
-						field: 'imgUrl',
-						title: '图片',
-						formatter: imgFormatter
+						field: 'orderId',
+						title: '订单号'
 					}, {
-						field: 'goodsId',
-						title: '商品ID',
-						visible: false
-					}, {
-						field: 'goodsNo',
-						title: '商品编号'
-					}, {
-						field: 'categoryName',
-						title: '分类'
+						field: 'totalPrice',
+						title: '总金额'
 
 					}, {
-						field: 'categoryId',
-						title: '分类ID',
+						field: 'addressName',
+						title: '收件人'
+					}, {
+						field: 'addressPhone',
+						title: '电话'
+
+					}, {
+						field: 'addressDetail',
+						title: '收货地址'
+
+					}, {
+						field: 'createTime',
+						title: '下单时间'
+
+					}, {
+						field: 'state',
+						title: '订单状态',
+						formatter:stateFormatter
+
+					}, {
+						title: '操作',
+						formatter: btnFormatter
+					}, {
+						field: 'branchStoreId',
+						title: '分店ID',
+						visible: false
+					}, {
+						field: 'mainStoreId',
+						title: '总店ID',
+						visible: false
+					}, {
+						field: 'state',
+						title: '订单状态',
 						visible: false
 
 					}],
@@ -432,10 +308,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 			//初始化子表格
 			var InitSubTable = function (index, row, $detail) {
-				var parentid = row.goodsId;
+				var parentid = row.orderId;
 				var cur_table = $detail.html('<table></table>').find('table');
 				$(cur_table).bootstrapTable({
-					data: row.subGoodses,
+					data: row.orderGoodses,
 					striped: true,           //是否显示行间隔色
 					uniqueId: "subGoodsId",
 					columns: [  {
@@ -443,6 +319,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						title: '图片',
 						formatter: imgFormatter
 					}, {
+						field: 'goodsNo',
+						title: '商品编号'
+					} , {
 						field: 'subGoodsId',
 						title: '子商品ID'
 					}, {
@@ -452,20 +331,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						field: 'price',
 						title: '价格'
 					}, {
-						title: '数量',
-						formatter: numFormatter
-					}, {
-						title: '操作',
-						formatter: btnFormatter
+						field: 'quantity',
+						title: '数量'
 					}, {
 						field: 'goodsId',
 						title: '商品ID',
 						visible: false
-					}, {
-						field: 'goodsNo',
-						title: '商品编号',
-						visible: false
-					} ]
+					}]
 				});
 			};
 
@@ -475,8 +347,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				var temp = {  //这里的键的名字和控制器的变量名必须一直，这边改动，控制器也需要改成一样的
 					size: params.limit,  //页面大小
 					page: Math.ceil(params.offset / params.limit) + 1, //页码
-					goodsNo: $("#qry-goodsNo").val(),
-					categoryId: $("#qry-categoryId").val()
+					orderId: $("#qry-orderId").val(),
+					orderTimeStart: $("#qry-orderTimeStart").val(),
+					orderTimeEnd: $("#qry-orderTimeEnd").val()
 				};
 				return temp;
 			};
@@ -484,43 +357,22 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		};
 
 
-
-		$('#submit-order').click(function () {
-			var transOrder = new Object();
-			transOrder.addressName = $('#addressName').val();
-			transOrder.addressPhone = $('#addressPhone').val();
-			transOrder.addressDetail = $('#addressDetail').val();
-
-			var orderGoods = new Array();
-			$('#order-goods-table tbody tr').each(function(index){
-				var goods = new Object();
-				goods.imgUrl = $(this).find($('.imgUrl img')).attr('src');
-				goods.subGoodsId = $(this).find($('.subGoodsId')).html();
-				goods.goodsId = $(this).find($('.goodsId')).html();
-				goods.goodsNo = $(this).find($('.goodsNo')).html();
-				goods.model = $(this).find($('.model')).html();
-				goods.price = $(this).find($('.price')).html();
-				goods.quantity = $(this).find($('.quantity')).html();
-				orderGoods.push(goods);
+		var oTable = new TableInit();
+		oTable.Init();
+		
+		$('#qry-btn').click(function () {
+			console.log('reload table...')
+			$('#order-table').bootstrapTable('refresh',{
+				url: 'trans-order/branch',     //请求后台的URL（*）
+				silent:true,
+				size: 10,  //页面大小
+				page: 1, //页码
+				orderId: $("#qry-orderId").val(),
+				orderTimeStart: $("#qry-orderTimeStart").val(),
+				orderTimeEnd: $("#qry-orderTimeEnd").val()
 			});
-			transOrder.orderGoodses = orderGoods;
-			console.log(JSON.stringify(transOrder));
-
-			$.ajax({
-				url:'trans-order/create',
-				data: JSON.stringify(transOrder),
-				type:'post',
-				contentType: 'application/json',
-				dataType:'json',
-				success:function(data){
-					console.log(data);
-				}
-			});
-
 
 		});
-
-
 
 
 

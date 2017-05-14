@@ -59,10 +59,15 @@ public class Restrictions {
      * @param ignoreNull
      * @return
      */
-    public static SimpleExpression like(String fieldName, String value,
-                                        MatchMode matchMode, boolean ignoreNull) {
+    public static SimpleExpression like(String fieldName, String value, MatchMode matchMode, boolean ignoreNull) {
         if(StringUtils.isEmpty(value))return null;
-        return null;
+        if("START".equals(matchMode)){
+            return new SimpleExpression (fieldName, value, Operator.LIKE_START);
+        }else if("END".equals(matchMode)){
+            return new SimpleExpression (fieldName, value, Operator.LIKE_END);
+        }else {
+            return new SimpleExpression (fieldName, value, Operator.LIKE);
+        }
     }
 
     /**
@@ -98,7 +103,7 @@ public class Restrictions {
      */
     public static SimpleExpression lte(String fieldName, Object value, boolean ignoreNull) {
         if(StringUtils.isEmpty(value))return null;
-        return new SimpleExpression (fieldName, value, Operator.GTE);
+        return new SimpleExpression (fieldName, value, Operator.LTE);
     }
 
     /**
@@ -110,7 +115,7 @@ public class Restrictions {
      */
     public static SimpleExpression gte(String fieldName, Object value, boolean ignoreNull) {
         if(StringUtils.isEmpty(value))return null;
-        return new SimpleExpression (fieldName, value, Operator.LTE);
+        return new SimpleExpression (fieldName, value, Operator.GTE);
     }
 
     /**

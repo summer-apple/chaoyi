@@ -79,7 +79,6 @@ public class GoodsService implements IGoodsService {
         Criteria<Goods> criteria = new Criteria<>();
         if (categoryId != 0) {
             criteria.add(Restrictions.eq("categoryId", categoryId, true));
-            criteria.add(Restrictions.and());
         }
         criteria.add(Restrictions.like("goodsNo",goodsNo, MatchMode.ANYWHERE,true));
 

@@ -6,6 +6,7 @@ import com.drartisan.entity.TransOrder;
 import com.drartisan.service.TransOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -99,10 +100,12 @@ public class TransOrderAction {
      * @param size
      * @return
      */
-    @RequestMapping(value = "/main/{page}/{size}", method=RequestMethod.GET)
-    public ReturnMessage getOrderByMainStore(HttpServletRequest request,@PathVariable("page") int page,@PathVariable("size") int size){
+    @RequestMapping(value = "/main", method=RequestMethod.GET)
+    public ReturnMessage getOrderByMainStore(HttpServletRequest request,String orderId,String orderTimeStart, String orderTimeEnd, int page, int size){
         Store loginStore = (Store)request.getSession().getAttribute("store");
-        return ReturnMessage.successMsg().setRetMsg("查询成功").setRetContent(transOrderService.getOrderByMainStore(loginStore.getStoreId(),page,size));
+        if(! StringUtils.isEmpty(orderTimeStart)) orderTimeStart = orderTimeStart+"000000";
+        if(! StringUtils.isEmpty(orderTimeEnd)) orderTimeEnd = orderTimeEnd+"000000";
+        return ReturnMessage.successMsg().setRetMsg("查询成功").setRetContent(transOrderService.getOrderByMainStore(loginStore.getStoreId(), orderId, orderTimeStart, orderTimeEnd,page,size));
     }
 
     /**
@@ -112,10 +115,12 @@ public class TransOrderAction {
      * @param size
      * @return
      */
-    @RequestMapping(value = "/branch/{page}/{size}", method=RequestMethod.GET)
-    public ReturnMessage getOrderByBranchStore(HttpServletRequest request,@PathVariable("page") int page,@PathVariable("size") int size){
+    @RequestMapping(value = "/branch", method=RequestMethod.POST)
+    public ReturnMessage getOrderByBranchStore(String orderId,String orderTimeStart, String orderTimeEnd, int page,int size,HttpServletRequest request){
         Store loginStore = (Store)request.getSession().getAttribute("store");
-        return ReturnMessage.successMsg().setRetMsg("查询成功").setRetContent(transOrderService.getOrderByBranchStore(loginStore.getStoreId(),page,size));
+        if(! StringUtils.isEmpty(orderTimeStart)) orderTimeStart = orderTimeStart+"000000";
+        if(! StringUtils.isEmpty(orderTimeEnd)) orderTimeEnd = orderTimeEnd+"235959";
+        return ReturnMessage.successMsg().setRetMsg("查询成功").setRetContent(transOrderService.getOrderByBranchStore(loginStore.getStoreId(), orderId, orderTimeStart, orderTimeEnd,page,size));
 
     }
 

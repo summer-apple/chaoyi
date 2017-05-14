@@ -10,7 +10,7 @@ import javax.persistence.criteria.Root;
  */
 public interface Criterion {
     enum Operator {
-        EQ, NE, LIKE, GT, LT, GTE, LTE, AND, OR
+        EQ, NE, LIKE, LIKE_START, LIKE_END, GT, LT, GTE, LTE, AND, OR
     }
 
     Predicate toPredicate(Root<?> root, CriteriaQuery<?> query,

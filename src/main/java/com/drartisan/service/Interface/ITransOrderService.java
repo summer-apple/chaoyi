@@ -23,13 +23,10 @@ public interface ITransOrderService {
     TransOrder getOrderById(String orderId);
 
     // 根据总店获取订单
-    Page<TransOrder> getOrderByMainStore(int mainStoreId, int page, int size);
+    Page<TransOrder> getOrderByMainStore(int mainStoreId,String orderId,String orderTimeStart, String orderTimeEnd, int page, int size);
 
     // 根据分店获取订单
-    Page<TransOrder> getOrderByBranchStore(int branchStoreId, int page, int size);
-
-    // 多条件查询
-    Page<TransOrder> getOrderByConditions(HashMap<String,Object> conditions, int page, int size);
+    Page<TransOrder> getOrderByBranchStore(int branchStoreId,String orderId,String orderTimeStart, String orderTimeEnd, int page, int size);
 
 
 

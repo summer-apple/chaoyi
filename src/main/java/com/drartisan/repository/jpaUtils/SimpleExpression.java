@@ -61,6 +61,10 @@ public class SimpleExpression implements Criterion {
                 return builder.notEqual(expression, value);
             case LIKE:
                 return builder.like(expression, "%" + value + "%");
+            case LIKE_START:
+                return builder.like(expression, "%" + value);
+            case LIKE_END:
+                return builder.like(expression, value + "%");
             case LT:
                 return builder.lessThan(expression, (Comparable) value);
             case GT:

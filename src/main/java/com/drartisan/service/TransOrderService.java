@@ -7,6 +7,7 @@ import com.drartisan.repository.jpaUtils.Criteria;
 import com.drartisan.repository.jpaUtils.Restrictions;
 import com.drartisan.service.Interface.ITransOrderService;
 import com.drartisan.util.CommonUtil;
+import org.hibernate.criterion.MatchMode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -44,7 +45,7 @@ public class TransOrderService implements ITransOrderService {
         String randomStr = CommonUtil.getRandomString(10);
         transOrder.setCreateTime(createTime);
         transOrder.setOrderId("T"+createTime+randomStr);
-        transOrder.setState("0");
+        transOrder.setState("1");
 
 
 
@@ -89,7 +90,7 @@ public class TransOrderService implements ITransOrderService {
     }
 
     @Override
-    public Page<TransOrder> getOrderByMainStore(int mainStoreId, int page, int size) {
+    public Page<TransOrder> getOrderByMainStore(int mainStoreId,String orderId,String orderTimeStart, String orderTimeEnd, int page, int size) {
 
         List<Sort.Order> orders = new ArrayList<>();
         Sort.Order order1 = new Sort.Order(Sort.Direction.DESC,"state");
@@ -105,33 +106,33 @@ public class TransOrderService implements ITransOrderService {
     }
 
     @Override
-    public Page<TransOrder> getOrderByBranchStore(int branchStoreId, int page, int size) {
+    public Page<TransOrder> getOrderByBranchStore(int branchStoreId,String orderId,String orderTimeStart, String orderTimeEnd, int page, int size) {
+
+       Criteria<TransOrder> criteria = new Criteria<>();
+        criteria.add(Restrictions.like("orderId",orderId, MatchMode.ANYWHERE,true));
+        criteria.add(Restrictions.gte("createTime",orderTimeStart,true));
+        criteria.add(Restrictions.lte("createTime",orderTimeEnd,true));
 
         List<Sort.Order> orders = new ArrayList<>();
-        Sort.Order order1 = new Sort.Order(Sort.Direction.DESC,"state");
+        Sort.Order order1 = new Sort.Order(Sort.Direction.ASC,"state");
         Sort.Order order2 = new Sort.Order(Sort.Direction.DESC,"orderId");
         orders.add(order1);
         orders.add(order2);
 
         Sort sort = new Sort(orders);
-
         Pageable pageable = new PageRequest(page-1,size,sort);
 
-        return iTransOrderRepository.findByBranchStoreId(branchStoreId, pageable);
-    }
+        Page<TransOrder> transOrderPage =  iTransOrderRepository.findAll(criteria, pageable);
 
-
-    @Override
-    public Page<TransOrder> getOrderByConditions(HashMap<String, Object> conditions, int page, int size) {
-
-        Criteria<TransOrder> criteria = new Criteria<TransOrder>();
-        criteria.add(Restrictions.eq("mainStoreId",1,true));
-        criteria.add(Restrictions.and(Restrictions.gt("totalPrice",1250,true)));
-        Sort sort =  new Sort(new Sort.Order(Sort.Direction.DESC,"orderId"));
-
-        return iTransOrderRepository.findAll(criteria,new PageRequest(page-1,size,sort));
+        for(TransOrder transOrder:transOrderPage){
+            transOrder.setOrderGoodses(orderGoodsService.findOrderGoodsByOrderId(transOrder.getOrderId()));
+        }
+        return transOrderPage;
 
     }
+
+
+
 
 
 

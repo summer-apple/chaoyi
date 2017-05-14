@@ -31,7 +31,7 @@
 			<li>
 				<a href="#"> <i class="linecons-database"></i> <span class="title">订单管理</span></a>
 				<ul>
-					<li><a href="dashboard/news.jsp"> <span class="title">调货订单</span></a></li>
+					<li><a href="dashboard/trans-order.jsp"> <span class="title">调货订单</span></a></li>
 					<li><a href="dashboard/newstype.jsp"> <span class="title">销售订单</span></a></li>
 				</ul>
 			</li>
