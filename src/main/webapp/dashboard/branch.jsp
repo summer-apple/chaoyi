@@ -74,7 +74,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 
 
-			<div class="add-panel panel panel-default" style="display: block;">
+			<div class="add-panel panel panel-default" style="display: none;">
 						<div class="panel-heading">
 							<h3 class="panel-title">进货单</h3>
 							<div class="panel-options">
@@ -104,58 +104,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										</tr></thead>
 
 										<tbody>
-											<tr>
 
-												<td class="imgUrl"><img style="width: 75px;height:75px;" src="http://www.hzcycs.com/upload/201704/27/201704271400102998.JPG"></td>
-												<td class="subGoodsId">231323</td>
-												<td class="goodsId">111</td>
-												<td class="goodsNo">bh59</td>
-												<td class="model">分类10</td>
-												<td class="price">100.00</td>
-												<td class="quantity">3</td>
-												<td>
-													<a href="javascript:void(0);">删除</a>
-												</td>
-											</tr>
-											<tr>
-
-												<td class="imgUrl"><img style="width: 75px;height:75px;" src="http://www.hzcycs.com/upload/201704/27/201704271400102998.JPG"></td>
-												<td class="subGoodsId">231323</td>
-												<td class="goodsId">111</td>
-												<td class="goodsNo">bh59</td>
-												<td class="model">分类10</td>
-												<td class="price">100.00</td>
-												<td class="quantity">3</td>
-												<td>
-													<a href="javascript:void(0);">删除</a>
-												</td>
-											</tr>
-											<tr>
-
-												<td class="imgUrl"><img style="width: 75px;height:75px;" src="http://www.hzcycs.com/upload/201704/27/201704271400102998.JPG"></td>
-												<td class="subGoodsId">231323</td>
-												<td class="goodsId">111</td>
-												<td class="goodsNo">bh59</td>
-												<td class="model">分类10</td>
-												<td class="price">100.00</td>
-												<td class="quantity">3</td>
-												<td>
-													<a href="javascript:void(0);">删除</a>
-												</td>
-											</tr>
-											<tr>
-
-												<td class="imgUrl"><img style="width: 75px;height:75px;" src="http://www.hzcycs.com/upload/201704/27/201704271400102998.JPG"></td>
-												<td class="subGoodsId">231323</td>
-												<td class="goodsId">111</td>
-												<td class="goodsNo">bh59</td>
-												<td class="model">分类10</td>
-												<td class="price">100.00</td>
-												<td class="quantity">3</td>
-												<td>
-													<a href="javascript:void(0);">删除</a>
-												</td>
-											</tr>
 										</tbody>
 									</table>
 								</div>
@@ -218,25 +167,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<form class="form-inline" id="qry-form" action="" method="post">
 							<div class="row">
 								<div class="form-group col-sm-4" style="min-width: 150px;">
-									<script type="text/javascript">
-										jQuery(document).ready(function($)
-										{
-											$("#qry-categoryId").selectBoxIt().on('open', function()
-											{
-												// Adding Custom Scrollbar
-												$(this).data('selectBoxSelectBoxIt').list.perfectScrollbar();
-											});
-										});
-									</script>
+
 									<div class="col-sm-12">
 										<select name="categoryId" class="form-control" id="qry-categoryId" style="display: none;">
-											<option value="105" selected>商品类目</option>
-											<option value="0" >商品类目2</option>
+											<option value="0" >所有分类</option>
 										</select>
 									</div>
 								</div>
 								<div class="form-group">
-									<input id="qry-goodsNo" name="goodsNo" class="form-control" type="text" placeholder="商品编号" value="bh">
+									<input id="qry-goodsNo" name="goodsNo" class="form-control" type="text" placeholder="商品编号">
 								</div>
 								<div class="form-group">
 									<button id="qry-btn" type="button" class="btn btn-primary btn-single btn-sm">查 询</button>
@@ -300,14 +239,35 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</div>
 	</div>
 
+
+	<div class="modal fade" id="modal-2" aria-hidden="true" style="display: none;">
+		<div class="modal-dialog">
+			<div class="modal-content">
+
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+					<h4 class="modal-title">消息</h4>
+				</div>
+
+				<div class="modal-body">
+					确定要删除该条内容吗？该操作不可撤销！
+				</div>
+
+				<div class="del-id"></div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-white del-confirm-btn" data-dismiss="modal">确定</button>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+
 	<link rel="stylesheet" href="resources/js/select2/select2.css">
 	<link rel="stylesheet" href="resources/js/select2/select2-bootstrap.css">
 
 	<%@ include file="script.jsp" %>
 	<script type="text/javascript" src="resources/js/jquery.pagination.js"></script>
-	<script src="resources/js/jquery.uploadifive.js"></script>
-	<!-- <script src="resources/js/ckeditor/ckeditor.js"></script> -->
-	<!-- <script src="resources/js/ckeditor/adapters/jquery.js"></script> -->
 
 	<script src="resources/js/select2/select2.min.js"></script>
 	<script src="resources/js/jquery-ui/jquery-ui.min.js"></script>
@@ -315,19 +275,25 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<script src="resources/js/multiselect/js/jquery.multi-select.js"></script>
 
 
-	<link rel="stylesheet" href="resources/js/wangEditor/css/wangEditor-1.3.12.css">
-	<script src="resources/js/wangEditor/js/wangEditor-1.3.12.min.js"></script>
-
 	<script type="text/javascript">
 	$().ready(function(){
 
+
+
+
+
+		//加载分类 下拉列表
 		$.ajax({
 			url: 'goods/category',
 			method:'get',
 			dataType: 'json',
 			success:function(data){
 				$.each(data, function (i,item) {
-					$("#qry-categoryId").append("<opthon value='"+item.categoryId+"'>"+item.categoryName+"</option>")
+					$("#qry-categoryId").append("<option value='"+item.categoryId+"'>"+item.categoryName+"</option>")
+				});
+				$("#qry-categoryId").selectBoxIt().on('open', function(){
+					// Adding Custom Scrollbar
+					$(this).data('selectBoxSelectBoxIt').list.perfectScrollbar();
 				});
 			}
 		});
@@ -335,17 +301,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 
 
-		$(function () {
 
-			//1.初始化Table
-			var oTable = new TableInit();
-			oTable.Init();
-
-			//2.初始化Button的点击事件
-			/* var oButtonInit = new ButtonInit();
-			 oButtonInit.Init(); */
-
-		});
 
 		var responseHandler = function (e) {
 			if (e.retCode == 0 && e.retContent.numberOfElements > 0) {
@@ -355,21 +311,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				return { "rows": [], "total": 0 };
 			}
 
-		}
+		};
 
 		var imgFormatter = function (res) {
 			var html = "<img style='width: 75px;height:75px;' src='"+ res + "'>";
 			return html;
-		}
+		};
 
 		var numFormatter = function (subGoodsId) {
 			return "<input type='number' value='1' min='1' id='"+ subGoodsId +"'>"
-		}
+		};
 
-		var btnFormatter = function (lst) {
-			return "<a href='javascript:void(0);'>加入订货单</a>"
-		}
+		var btnFormatter = function (subGoodsId) {
 
+			return "<a class='btn btn-primary btn-single btn-sm' onclick=addGoods("+subGoodsId+")>加入订货单</a>"
+		};
 
 		var TableInit = function () {
 			var oTableInit = new Object();
@@ -433,7 +389,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			//初始化子表格
 			var InitSubTable = function (index, row, $detail) {
 				var parentid = row.goodsId;
-				var cur_table = $detail.html('<table></table>').find('table');
+				var cur_table = $detail.html('<table class="subgoods-table"></table>').find('table');
 				$(cur_table).bootstrapTable({
 					data: row.subGoodses,
 					striped: true,           //是否显示行间隔色
@@ -443,6 +399,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						title: '图片',
 						formatter: imgFormatter
 					}, {
+						field: 'goodsId',
+						title: '商品ID'
+					}, {
+						field: 'goodsNo',
+						title: '商品编号'
+					} , {
 						field: 'subGoodsId',
 						title: '子商品ID'
 					}, {
@@ -452,20 +414,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						field: 'price',
 						title: '价格'
 					}, {
+						field: 'subGoodsId',
 						title: '数量',
 						formatter: numFormatter
 					}, {
+						field: 'subGoodsId',
 						title: '操作',
 						formatter: btnFormatter
-					}, {
-						field: 'goodsId',
-						title: '商品ID',
-						visible: false
-					}, {
-						field: 'goodsNo',
-						title: '商品编号',
-						visible: false
-					} ]
+					}]
 				});
 			};
 
@@ -483,8 +439,24 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			return oTableInit;
 		};
 
+		var oTable = new TableInit();
+		oTable.Init();
 
+		//筛选 -- 重载表格
+		$('#qry-btn').click(function () {
+			console.log('reload table...')
+			$('#goods-table').bootstrapTable('refresh',{
+				url: 'goods/filter',     //请求后台的URL（*）
+				silent:true,
+				size: 10,  //页面大小
+				page: 1, //页码
+				goodsNo: $("#qry-goodsNo").val(),
+				categoryId: $("#qry-categoryId").val()
+			});
 
+		});
+
+		//提交订单
 		$('#submit-order').click(function () {
 			var transOrder = new Object();
 			transOrder.addressName = $('#addressName').val();
@@ -500,9 +472,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				goods.goodsNo = $(this).find($('.goodsNo')).html();
 				goods.model = $(this).find($('.model')).html();
 				goods.price = $(this).find($('.price')).html();
-				goods.quantity = $(this).find($('.quantity')).html();
+				goods.quantity = $(this).find($('.quantity input')).val();
 				orderGoods.push(goods);
 			});
+
+			if(orderGoods.length == 0){
+				$('#modal-2 .modal-body').html("订货单中无商品！");
+				jQuery('#modal-2').modal('show', {backdrop: 'fade'});
+				return
+			}
+
 			transOrder.orderGoodses = orderGoods;
 			console.log(JSON.stringify(transOrder));
 
@@ -513,7 +492,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				contentType: 'application/json',
 				dataType:'json',
 				success:function(data){
-					console.log(data);
+					if(data.retCode==0){
+						window.location.href='dashboard/trans-order.jsp';
+					}else{
+						$('#modal-2 .modal-body').html(data.retMsg);
+						jQuery('#modal-2').modal('show', {backdrop: 'fade'});
+					}
 				}
 			});
 
@@ -521,9 +505,57 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		});
 
 
+		// 商品加入购物车
+		window.addGoods = function(subGoodsId){
+
+			var subGoods = $(".subgoods-table tr[data-uniqueid='"+subGoodsId+"']");
+			var is_new_goods = true;
+			$('#order-goods-table tbody tr').each(function(index){
+				if(subGoodsId == $(this).find($('.subGoodsId')).html()){
+					quantity = $(this).find($('.quantity input'))
+					quantity.val(parseInt(quantity.val())+parseInt(subGoods.find("td:eq(6) input").val()))
+					is_new_goods = false;
+				}
+			});
+
+			if(is_new_goods) {
+				var imgUrl = subGoods.find("td:eq(0) img").attr('src');
+				var goodsId = subGoods.find("td:eq(1)").html();
+				var goodsNo = subGoods.find("td:eq(2)").html();
+
+				var model = subGoods.find("td:eq(4)").html();
+				var price = subGoods.find("td:eq(5)").html();
+				var quantity = subGoods.find("td:eq(6) input").val();
+
+				var insert = '<tr id="' + subGoodsId + '">' +
+						'<td class="imgUrl"><img style="width: 75px;height:75px;" src="' + imgUrl + '"></td>' +
+						'<td class="subGoodsId">' + subGoodsId + '</td>' +
+						'<td class="goodsId">' + goodsId + '</td>' +
+						'<td class="goodsNo">' + goodsNo + '</td>' +
+						'<td class="model">' + model + '</td>' +
+						'<td class="price">' + price + '</td>' +
+						'<td class="quantity"><input type="number" value="' + quantity + '" min="1"></td>' +
+						'<td><a class="del-goods-btn btn btn-primary btn-single btn-sm">删除</a></td></tr>';
+
+				$('#order-goods-table tbody').append(insert);
+				$(".add-panel").show();
+			}
+			//jQuery('#modal-1').modal('show', {backdrop: 'fade'});
+		};
 
 
+		// 购物车商品删除
+		$(document).on('click','.del-goods-btn',function(){
+			$(this).parent().parent('tr').remove();
+		});
 
+
+		// 动态添加的数据操作需要on函数进行绑定
+		$(document).on("blur","input[type='number']",function(){
+			if($(this).val()<1){
+				$(this).val(1);
+			}
+		});
 
 
 

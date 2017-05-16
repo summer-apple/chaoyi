@@ -112,12 +112,13 @@ public class TransOrderService implements ITransOrderService {
         criteria.add(Restrictions.like("orderId",orderId, MatchMode.ANYWHERE,true));
         criteria.add(Restrictions.gte("createTime",orderTimeStart,true));
         criteria.add(Restrictions.lte("createTime",orderTimeEnd,true));
+        // TODO 订单状态
 
         List<Sort.Order> orders = new ArrayList<>();
-        Sort.Order order1 = new Sort.Order(Sort.Direction.ASC,"state");
-        Sort.Order order2 = new Sort.Order(Sort.Direction.DESC,"orderId");
-        orders.add(order1);
+        Sort.Order order1 = new Sort.Order(Sort.Direction.DESC,"state");
+        Sort.Order order2 = new Sort.Order(Sort.Direction.DESC,"createTime");
         orders.add(order2);
+        orders.add(order1);
 
         Sort sort = new Sort(orders);
         Pageable pageable = new PageRequest(page-1,size,sort);
