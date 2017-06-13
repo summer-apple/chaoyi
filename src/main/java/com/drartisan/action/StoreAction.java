@@ -39,7 +39,7 @@ public class StoreAction {
         String url = "../dashboard/login.jsp";
         if(null != store){
             request.getSession().setAttribute("store",store);
-            url = store.getMainStore() == 0 ? "../dashboard/main.jsp":"../dashboard/branch.jsp";
+            url = store.getMainStore() == 0 ? "../dashboard/main.jsp":"../dashboard/trans.jsp";
         }else{
             request.getSession().setAttribute("flag",true);
         }

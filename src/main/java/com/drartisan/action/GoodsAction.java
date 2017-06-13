@@ -5,6 +5,7 @@ import com.drartisan.entity.Goods;
 import com.drartisan.entity.ReturnMessage;
 import com.drartisan.entity.SubGoods;
 import com.drartisan.service.GoodsService;
+import com.drartisan.service.SubGoodsService;
 import com.fasterxml.jackson.databind.util.JSONPObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -24,7 +25,8 @@ public class GoodsAction {
 
     @Autowired
     GoodsService goodsService;
-
+    @Autowired
+    SubGoodsService subGoodsService;
 //
 //    /**
 //     * 根据商品编号查
@@ -89,13 +91,36 @@ public class GoodsAction {
 //
 //
 //
+
+    @RequestMapping(value = "/subgoods/{subGoodsId}")
+    public ReturnMessage findSubGoodsById(@PathVariable("subGoodsId") int subGoodsId){
+        SubGoods subGoods = subGoodsService.findSubGoodsBySubGoodsId(subGoodsId);
+        if(subGoods != null) {
+            return ReturnMessage.successMsg().setRetMsg("查询成功").setRetContent(subGoods);
+        }else{
+            return ReturnMessage.failureMsg().setRetMsg("未找到");
+        }
+    }
+
+    /**
+     * 根据商品编号和分类获取商品
+     * @param goodsNo
+     * @param categoryId
+     * @param page
+     * @param size
+     * @return
+     */
     @RequestMapping(value = "/filter", method = RequestMethod.POST)
     public ReturnMessage findAllByKvs(String goodsNo,int categoryId,int page,int size){
         Page<Goods> goodsPage = goodsService.findGoodsByKvs(goodsNo,categoryId,page,size);
         return ReturnMessage.successMsg().setRetMsg("查询成功").setRetContent(goodsPage);
     }
 
-
+    /**
+     *
+     * @param goods
+     * @return
+     */
     @RequestMapping(value = "/obj", method = RequestMethod.POST)
     public ReturnMessage test(@RequestBody Goods goods){
         System.out.println(goods.getGoodsNo());
@@ -105,6 +130,10 @@ public class GoodsAction {
         return ReturnMessage.successMsg().setRetMsg("查询成功").setRetContent(null);
     }
 
+    /**
+     * 获取所有类别
+     * @return
+     */
     @RequestMapping(value = "category", method = RequestMethod.GET)
     public List<Category> getCategory(){
         return goodsService.getCategory();

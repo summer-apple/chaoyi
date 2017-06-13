@@ -109,6 +109,7 @@ public class TransOrderService implements ITransOrderService {
     public Page<TransOrder> getOrderByBranchStore(int branchStoreId,String orderId,String orderTimeStart, String orderTimeEnd, int page, int size) {
 
        Criteria<TransOrder> criteria = new Criteria<>();
+        criteria.add(Restrictions.eq("branchStoreId",branchStoreId,false));
         criteria.add(Restrictions.like("orderId",orderId, MatchMode.ANYWHERE,true));
         criteria.add(Restrictions.gte("createTime",orderTimeStart,true));
         criteria.add(Restrictions.lte("createTime",orderTimeEnd,true));

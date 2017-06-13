@@ -1,6 +1,7 @@
 package com.drartisan.service.Interface;
 
 import com.drartisan.entity.SaleOrder;
+import org.springframework.data.domain.Page;
 
 import java.util.HashMap;
 import java.util.List;
@@ -14,6 +15,9 @@ public interface ISaleOrderService {
     // 创建调货订单
     SaleOrder createSaleOrder(SaleOrder saleOrder);
 
+    // 查询分店销售订单
+    Page<SaleOrder> getOrderByBranchStore(int branchStoreId, String orderId, String orderTimeStart, String orderTimeEnd, int page, int size);
+
     // 更新订单状态
     SaleOrder updateSaleOrder(String orderId,String state);
 
@@ -23,11 +27,7 @@ public interface ISaleOrderService {
     // 根据ID获取订单
     SaleOrder getOrderById(String orderId);
 
-    // 根据店铺获取订单
-    List<SaleOrder> getOrderByStore(int storeId);
 
-    // 多条件查询
-    List<SaleOrder> getOrderByConditions(HashMap<String,Object> conditions);
 
     // 支付订单
 
