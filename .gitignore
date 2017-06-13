@@ -106,3 +106,4 @@ local.properties
 *.iml
 target/
 out/
+Configure.java
